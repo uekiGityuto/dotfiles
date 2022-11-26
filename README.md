@@ -33,3 +33,8 @@ VS Code をインストールして同期をオンにする。
 [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=SimonSiefke.prettier-vscode)の拡張機能によって、各ファイルが予期せぬフォーマットされる可能性があるので注意。
 
 必要に応じてワークスペース内で無効にしたり、任意のタイプのファイルのみ有効にしたり、任意のタイプのファイルは別のフォーマッタを有効にするなど対応すること。
+
+# メモ
+- nodeはnodebrewでインストールする想定
+- pythonもpyenv使うと便利かも
+- 環境切り替えはそもそもanyenv使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）

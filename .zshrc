@@ -1,9 +1,11 @@
 # nodeバージョン管理
-# export PATH=$HOME/.nodebrew/current/bin:$PATH
+## 参考: https://qiita.com/mame_daifuku/items/373daf5f49ee585ea498
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Javaバージョン管理
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init -)"
+## 参考: https://takezoe.hatenablog.com/entry/2020/04/20/233219
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # go installコマンドでinstallしたコマンドを実行可能にする
 ## 参考: https://maku77.github.io/p/s258beh/

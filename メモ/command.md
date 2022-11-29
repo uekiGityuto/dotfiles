@@ -29,15 +29,15 @@ Mac でよく使うコマンドメモ
 
 ### 切り替え
 
-- context 切り替え
+- context 切り替え:
   `kubectx [context名]`
-- namespace 切り替え
+- namespace 切り替え:
   `kubens [namespace名]`
 
 ### 調査
 
-- kube-proxy
+- kube-proxy:
   `kubectl port-forward <target_pod's_name> 8080:8082`
-- 調査用 Pod
+- 調査用 Pod:
   - `kubectl run ueki-pod --image=nginx --restart=Never --rm -it -- sh`
   - `kubectl run ueki-pod --image=mysql:5.7 --restart=Never --rm -it -- sh`

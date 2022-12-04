@@ -12,7 +12,7 @@ Mac でよく使うショートカットメモ
   `cmd + shift + z`
 - 移動:
   `cmd + c → command + opt + v`
-- 非可視ファイル表示:
+- 不可視ファイル表示:
   `cmd + shift + .`
 
 ## VSCode

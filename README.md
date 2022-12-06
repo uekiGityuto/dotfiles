@@ -63,3 +63,7 @@ VS Code をインストールして同期をオンにする。
 - python は pyenv でバージョン管理
 - java は jenv でバージョン管理
 - 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
+- adoptopenjdk8のインストールに失敗する可能性あり。その場合はを参考にして、以下コマンドでインストールする。（[参考](https://qiita.com/gishi_yama/items/9cdb3d95ee7f25b8018f)
+```
+brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
+```

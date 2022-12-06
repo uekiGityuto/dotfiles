@@ -1,12 +1,28 @@
 # dotfiles
 
-# 必要
+Mac の PC を初期状態からセットアップする前提。
 
-- [Homebrew](https://brew.sh/index_ja)
+## セットアップ
 
-# 使用方法
+### Homebrew セットアップ
 
-## 設定ファイルセットアップ
+[Homebrew のドキュメント](https://docs.brew.sh/FAQ)を参考にインストール。
+
+## Github セットアップ
+
+### OpenSSL をインストール
+
+Mac デフォルトの OpenSSL だと ssh-agent のセットアップが上手く出来ない(?)ので、
+Homebrew で OpenSSL をインストールしておく。
+
+```
+brew install openssl@3
+echo 'export PATH="$(brew --prefix openssl@3)/bin:$PATH"' >> ~/.zprofile
+```
+
+#### SSH のセットアップ
+
+[Github のドキュメント](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac)を参考にしてセットアップする。
 
 ```
 ./install.sh
@@ -16,6 +32,13 @@
 
 ```
 brew bundle
+```
+
+## config 再読み込み
+
+```
+source ~/.zshrc
+source ~/.zprofile
 ```
 
 # その他
@@ -35,6 +58,8 @@ VS Code をインストールして同期をオンにする。
 必要に応じてワークスペース内で無効にしたり、任意のタイプのファイルのみ有効にしたり、任意のタイプのファイルは別のフォーマッタを有効にするなど対応すること。
 
 # メモ
-- nodeはnodebrewでインストールする想定
-- pythonもpyenv使うと便利かも
-- 環境切り替えはそもそもanyenv使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
+
+- node は nvm でバージョン管理
+- python は pyenv でバージョン管理
+- java は jenv でバージョン管理
+- 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）

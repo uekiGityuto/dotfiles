@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p ~/.jenv/versions
+mkdir -p ~/.nvm
 mkdir -p ~/.zsh
 
 curl -o ~/.zsh/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh

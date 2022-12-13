@@ -11,4 +11,5 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 
 ln -sf "$(pwd)/Brewfile" ~/Brewfile
 ln -sf "$(pwd)/.zprofile" ~/.zprofile
+ln -sf "$(pwd)/.gitconfig" ~/.gitconfig
 ln -sf "$(pwd)/.zshrc" ~/.zshrc

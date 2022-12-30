@@ -8,10 +8,10 @@
   - /ask
   - ![badge](https://img.shields.io/badge/review-ask-blue.svg)
 - imo
-  /imo
+  - /imo
   - ![badge](https://img.shields.io/badge/review-imo-orange.svg)
 - must
-  - must
+  - /must
   - ![badge](https://img.shields.io/badge/review-must-red.svg)
 
 ### アプリ
@@ -26,6 +26,8 @@
   - [Shiftit](https://github.com/fikovnik/ShiftIt/releases)
 - 翻訳
   - [DeepL](https://www.deepl.com/ja/app/)
-- ターミナル
+- Finder
   - [ShellHere](https://github.com/lhagan/ShellHere)
     - Finder で開いているディレクトリでターミナルを開く
+  - [Googleドライブ](https://www.google.com/intl/ja_jp/drive/download/)
+    - FinderにGoogleドライブを統合

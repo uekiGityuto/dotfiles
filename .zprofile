@@ -34,3 +34,5 @@ export PATH="$(brew --prefix openssl@3)/bin:$PATH"
 alias k='kubectl'
 alias d='docker'
 alias dc='docker compose'
+alias p='python'
+alias pm='python manage.py'

@@ -40,6 +40,12 @@
   ps aux
   ```
   `aux`をつけることで網羅的に情報が取れる
+- curl: 例
+  ```
+  curl -XGET -H "Content-Type: application/json" http://127.0.0.1:8000/member/
+  
+  curl -XPOST -H "Content-Type: application/json" -d '{"name" : "ueki", "sex" : "0", "email" : "ueki@example.com"}' http://127.0.0.1:8000/member/
+  ```
 
 ## K8s
 

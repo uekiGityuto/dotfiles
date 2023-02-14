@@ -41,9 +41,10 @@
   ```
   `aux`をつけることで網羅的に情報が取れる
 - curl: 例
+
   ```
   curl -XGET -H "Content-Type: application/json" http://127.0.0.1:8000/member/
-  
+
   curl -XPOST -H "Content-Type: application/json" -d '{"name" : "ueki", "sex" : "0", "email" : "ueki@example.com"}' http://127.0.0.1:8000/member/
   ```
 
@@ -132,6 +133,12 @@
   git branch -d feature/3032-AccountAuthenticationType
   ```
 
+  `feature/cryptotrend/`を含むローカルブランチ一括削除
+
+  ```
+  git branch | grep feature/cryptotrend/ | xargs git branch -d
+  ```
+
 - ローカルブランチ削除（マージしていないブランチでも削除）
 
   ```
@@ -159,4 +166,41 @@
 - 強制 push
   ```
   git push --force-with-lease origin feature/3032-ModifyEnum
+  ```
+
+## MySQL
+
+- ログイン
+  ```
+  mysql -u refbatmember -p -D member
+  ```
+- スキーマ確認
+
+  ```
+  SHOW DATABASES;
+  SHOW TABLES;
+  DESC [table名]
+  SHOW CLOUMNS FROM [table名]
+  ```
+
+## PostgreSQL
+
+- ログイン
+
+  ```
+  psql -U postgres -d fuelkinri
+  ```
+
+- メタコマンド
+  ```
+  # メタコマンド一覧
+  \?
+  # DB一覧
+  \l
+  # テーブル、ビュー、シーケンスの一覧
+  \d
+  # テーブル一覧
+  \dt
+  # カラム一覧
+  \d [talble名]
   ```

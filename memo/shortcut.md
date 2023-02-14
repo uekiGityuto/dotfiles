@@ -25,6 +25,8 @@ Mac でよく使うショートカットメモ
   `cmd + shift + p`
 - 矩形選択:
   `cmd + shift + opt`
+- メソッド一覧
+  `cmd + shift + o`
 - PlantUML:
   `opt + d`
 - Markdown:

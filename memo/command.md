@@ -79,6 +79,12 @@
 
 ### 軽い気持ちで実施できること
 
+- リモートリポジトリ追加
+
+  ```
+  git remote add origin git@github.com:uekiGityuto/sql-expt.git
+  ```
+
 - 差分ファイル確認
 
   ```

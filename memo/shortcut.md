@@ -43,6 +43,10 @@ Mac でよく使うショートカットメモ
   `shift + cmd + l`
 - コマンドパレット:
   `cmd + shift + p`
+- 定義箇所にジャンプ
+  `F12` または、 `cmd + 左クリック`
+- 利用箇所を一覧で確認(Find All References):
+  `shift + opt + F12`
 
 ### コマンドパレット
 

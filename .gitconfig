@@ -1,8 +1,6 @@
 [user]
 	name = Yuto Ueki
 	email = ueki.yuto.bz@gmail.com
-[core]
-	editor = vim -c \"set fenc=utf-8\"
 [color]
 	diff = auto
 	status = auto
@@ -12,3 +10,4 @@
 [alias]
 	sw = switch
 	log1 = log --oneline
+	b = branch

@@ -34,3 +34,9 @@ setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 ## 自動補完の設定
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# GitHub Copilot
+
+## GitHub Copilot CLI
+## 参考: https://www.npmjs.com/package/@githubnext/github-copilot-cli
+eval "$(github-copilot-cli alias -- "$0")"

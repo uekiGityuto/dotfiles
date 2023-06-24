@@ -40,3 +40,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## GitHub Copilot CLI
 ## 参考: https://www.npmjs.com/package/@githubnext/github-copilot-cli
 eval "$(github-copilot-cli alias -- "$0")"
+
+## GitHub CLI
+eval "$(gh completion -s zsh)"

@@ -65,6 +65,7 @@ VS Code をインストールして同期をオンにすること。
 - 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
 - adoptopenjdk8 のインストールに失敗する可能性あり。  
   その場合は以下コマンドでインストールする。（[参考](https://qiita.com/gishi_yama/items/9cdb3d95ee7f25b8018f)）
+- DockerとかSlackもbrewでインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）
 
 ```
 brew install --cask adoptopenjdk/openjdk/adoptopenjdk8

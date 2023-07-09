@@ -9,5 +9,14 @@
 	default = simple
 [alias]
 	sw = switch
-	log1 = log --oneline
+	log1 = "log --oneline"
 	b = branch
+	rebase2 = "rebase -i HEAD~2"
+	rebase3 = "rebase -i HEAD~3"
+[fetch]
+	prune = true
+[pull]
+	ff = only
+[rebase]
+	autostash = true
+	autosquash = true

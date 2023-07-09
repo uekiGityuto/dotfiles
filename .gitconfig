@@ -11,8 +11,8 @@
 	sw = switch
 	log1 = "log --oneline"
 	b = branch
-	rebase2 = "rebase -i HEAD~2"
-	rebase3 = "rebase -i HEAD~3"
+	# e.g. git rebase-n 3
+	rebase-n = "!f() { git rebase -i HEAD~$1; }; f"
 [fetch]
 	prune = true
 [pull]

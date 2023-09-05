@@ -4,42 +4,51 @@ Mac の PC を初期状態からセットアップする前提。
 
 ## セットアップ
 
-### Homebrew セットアップ
+### Homebrew インストール
 
 [Homebrew のドキュメント](https://docs.brew.sh/FAQ)を参考にインストール。
 
-## Github セットアップ
+### セットアップ実行
 
-### OpenSSL をインストール
-
-Mac デフォルトの OpenSSL だと ssh-agent のセットアップが上手く出来ない(?)ので、
-Homebrew で OpenSSL をインストールしておく。
+#### セットアップスクリプト実行
 
 ```
-brew install openssl@3
-echo 'export PATH="$(brew --prefix openssl@3)/bin:$PATH"' >> ~/.zprofile
+./init.sh
 ```
 
-#### SSH のセットアップ
-
-[Github のドキュメント](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac)を参考にしてセットアップする。
-
-```
-./install.sh
-```
-
-## パッケージインストール
+#### パッケージインストール
 
 ```
 brew bundle
 ```
 
-## config 再読み込み
+エラーが起きる気がするので、セットアップスクリプトにはいれていない。
+
+エラーが起きた場合はエラー内容に応じて対応すること。  
+例えば、adoptopenjdk8 のインストールに失敗した場合は、以下コマンドでインストールする。（[参考](https://qiita.com/gishi_yama/items/9cdb3d95ee7f25b8018f)）
+
+```
+brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
+```
+
+#### config 再読み込み
 
 ```
 source ~/.zshrc
 source ~/.zprofile
 ```
+
+## SSH
+
+### 鍵
+
+鍵ファイルは別途配置すること。
+
+### Github セットアップ
+
+config の設定などはセットアップスクリプトで実施済みなので、基本的には鍵の作成と登録のみで良い認識。
+
+問題がある場合は、[Github のドキュメント](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac)を参考にしてセットアップすること。
 
 # その他
 
@@ -63,10 +72,4 @@ VS Code をインストールして同期をオンにすること。
 - python は pyenv でバージョン管理
 - java は jenv でバージョン管理
 - 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
-- adoptopenjdk8 のインストールに失敗する可能性あり。  
-  その場合は以下コマンドでインストールする。（[参考](https://qiita.com/gishi_yama/items/9cdb3d95ee7f25b8018f)）
-- DockerとかSlackもbrewでインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）
-
-```
-brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
-```
+- Docker とか Slack も brew でインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）

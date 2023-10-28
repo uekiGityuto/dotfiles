@@ -11,6 +11,9 @@
 	sw = switch
 	log1 = "log --oneline"
 	b = branch
+	# e.g. git b-d feature/sell
+	b-d = "!f() { git branch | grep $1 | xargs git branch -d; }; f"
+	b-D = "!f() { git branch | grep $1 | xargs git branch -D; }; f"
 	# e.g. git rebase-n 3
 	rebase-n = "!f() { git rebase -i HEAD~$1; }; f"
 [fetch]

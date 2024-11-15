@@ -34,7 +34,10 @@ export PATH="$(brew --prefix openssl@3)/bin:$PATH"
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Flutterバージョン管理（fvm）
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+# fvmで管理しているFlutterはfvm flutterコマンドで実行するが、flutterコマンドを実行したいときがあるので、
+# fvmでglobal指定しているFlutterのパスを通して、flutterコマンドを実行できるようにする。
+# aliasでfvm flutterコマンドをflutterコマンドに置き換えることもできるが、Makefileからはaliasが適用されなかったので、この方法を採用。
+export PATH="$PATH":"$HOME/fvm/default/bin"
 
 # alias
 alias k='kubectl'
@@ -42,4 +45,3 @@ alias d='docker'
 alias dc='docker compose'
 alias p='python'
 alias ll='ls -alF'
-alias flutter="fvm flutter"

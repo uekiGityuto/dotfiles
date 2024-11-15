@@ -30,9 +30,16 @@ export PATH=$HOME/go/bin:$PATH
 ## 参考: https://tearoom6.hateblo.jp/entry/2020/05/30/225038
 export PATH="$(brew --prefix openssl@3)/bin:$PATH"
 
+# MySQLクライアントのパスを通す
+# export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Flutterバージョン管理（fvm）
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
 # alias
 alias k='kubectl'
 alias d='docker'
 alias dc='docker compose'
 alias p='python'
 alias ll='ls -alF'
+alias flutter="fvm flutter"

@@ -43,3 +43,8 @@ eval "$(github-copilot-cli alias -- "$0")"
 
 ## GitHub CLI
 eval "$(gh completion -s zsh)"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/ueki/.dart-cli-completion/zsh-config.zsh ]] && . /Users/ueki/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]

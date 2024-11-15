@@ -71,5 +71,6 @@ VS Code をインストールして同期をオンにすること。
 - node は nvm でバージョン管理
 - python は pyenv でバージョン管理
 - java は jenv でバージョン管理
+- Flutterはfvmでバージョン管理
 - 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
 - Docker とか Slack も brew でインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）

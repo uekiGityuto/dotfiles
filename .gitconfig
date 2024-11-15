@@ -23,3 +23,5 @@
 [rebase]
 	autostash = true
 	autosquash = true
+[core]
+	ignorecase = false

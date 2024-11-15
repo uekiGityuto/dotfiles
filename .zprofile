@@ -39,6 +39,11 @@ export PATH="$(brew --prefix openssl@3)/bin:$PATH"
 # aliasでfvm flutterコマンドをflutterコマンドに置き換えることもできるが、Makefileからはaliasが適用されなかったので、この方法を採用。
 export PATH="$PATH":"$HOME/fvm/default/bin"
 
+# adbコマンドのパスを通す
+export PATH="$PATH":"$HOME/Library/Android/sdk/platform-tools"
+# adbコマンドのパスを通す
+export PATH="$PATH":"$HOME/Library/Android/sdk/emulator"
+
 # alias
 alias k='kubectl'
 alias d='docker'

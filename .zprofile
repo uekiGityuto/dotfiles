@@ -37,6 +37,7 @@ export PATH="$(brew --prefix openssl@3)/bin:$PATH"
 # fvmで管理しているFlutterはfvm flutterコマンドで実行するが、flutterコマンドを実行したいときがあるので、
 # fvmでglobal指定しているFlutterのパスを通して、flutterコマンドを実行できるようにする。
 # aliasでfvm flutterコマンドをflutterコマンドに置き換えることもできるが、Makefileからはaliasが適用されなかったので、この方法を採用。
+# メモ: fvm-activateでも良いかもしれない > `https://qiita.com/utisam/items/e44909aae8d1c050c95f`
 export PATH="$PATH":"$HOME/fvm/default/bin"
 
 # adbコマンドのパスを通す

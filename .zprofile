@@ -2,7 +2,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ssh-agentにSSH private keyを追加
-# TODO: 本来は一度実行するだけで良いはず。毎回実行しないようにしたい。
+# FIXME: 本来は一度実行するだけで良いはず。毎回実行しないようにしたい。
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 # nodeバージョン管理
@@ -40,10 +40,18 @@ export PATH="$(brew --prefix openssl@3)/bin:$PATH"
 # メモ: fvm-activateでも良いかもしれない > `https://qiita.com/utisam/items/e44909aae8d1c050c95f`
 export PATH="$PATH":"$HOME/fvm/default/bin"
 
-# adbコマンドのパスを通す
+# Android
+## adbコマンドのパスを通す
 export PATH="$PATH":"$HOME/Library/Android/sdk/platform-tools"
-# adbコマンドのパスを通す
+## adbコマンドのパスを通す
 export PATH="$PATH":"$HOME/Library/Android/sdk/emulator"
+
+# IOS
+## podコマンドのパスを通す
+# export PATH="$PATH":"/Users/ueki/pg/biz/Finatext/baas-native/vendor/bundle/ruby/3.2.0/bin"
+
+# Rubyのバージョン管理
+eval "$(rbenv init - --no-rehash zsh)"
 
 # alias
 alias k='kubectl'
@@ -51,3 +59,4 @@ alias d='docker'
 alias dc='docker compose'
 alias p='python'
 alias ll='ls -alF'
+alias zelda='afplay /Users/ueki/Music/Music/Media.localized/Music/Unknown\ Artist/Unknown\ Album/zelda.mp3'

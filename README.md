@@ -81,3 +81,13 @@ VS Code をインストールして同期をオンにすること。
 - ruby は rbenv でバージョン管理
 - 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
 - Docker とか Slack も brew でインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）
+
+
+## zplug
+
+zshのpluginは、一部で管理している。
+zplugから削除したい場合は、以下手順で削除する（はず）。
+- `.zshrc`から該当のpluginの記述を削除
+- `zplug clean`で削除（未使用のプラグインが削除される）
+- `zplug list`で削除されたことを確認
+

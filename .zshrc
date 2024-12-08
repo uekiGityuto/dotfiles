@@ -17,24 +17,6 @@ GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
 \$ '
 
-# 自動補完
-## 参考: https://zenn.dev/snowcat/articles/dd90a7796b9af4
-
-## 履歴ファイルの保存先
-export HISTFILE=${HOME}/.zsh_history
-## メモリに保存される履歴の件数
-export HISTSIZE=1000
-## 履歴ファイルに保存される履歴の件数
-export SAVEHIST=100000
-## 重複を記録しない
-setopt hist_ignore_dups
-## ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
-setopt hist_ignore_all_dups
-## 余分な空白は詰めて記録
-setopt hist_reduce_blanks
-## 自動補完の設定
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # GitHub Copilot
 
 ## GitHub Copilot CLI
@@ -49,17 +31,36 @@ eval "$(gh completion -s zsh)"
 [[ -f /Users/ueki/.dart-cli-completion/zsh-config.zsh ]] && . /Users/ueki/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
-# zplug
-# 参考: https://github.com/zplug/zplug
-# 参考: https://dev.classmethod.jp/articles/20240408-i-tried-to-get-zplug-working-now/
+# # zplug
+# # 参考: https://github.com/zplug/zplug
+# # 参考: https://dev.classmethod.jp/articles/20240408-i-tried-to-get-zplug-working-now/
 
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-## Macのターミナルで時間がかかるコマンドが終了したら通知する
-## 参考: https://github.com/marzocchi/zsh-notify
-## 参考: https://fromatom.hatenablog.com/entry/2019/12/10/201514
+# ## Macのターミナルで時間がかかるコマンドが終了したら通知する
+# ## 参考: https://github.com/marzocchi/zsh-notify
+# ## 参考: https://fromatom.hatenablog.com/entry/2019/12/10/201514
 zplug "marzocchi/zsh-notify"
+
+# Load theme file
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# 非同期処理できるようになる
+# zplug "mafredri/zsh-async"
+# テーマ(ここは好みで。調べた感じpureが人気)
+# zplug "sindresorhus/pure"
+# 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
+zplug "zsh-users/zsh-syntax-highlighting"
+# コマンド入力途中で上下キー押したときの過去履歴がいい感じに出るようになる
+zplug "zsh-users/zsh-history-substring-search"
+# 過去に入力したコマンドの履歴が灰色のサジェストで出る
+zplug "zsh-users/zsh-autosuggestions"
+# 補完強化
+zplug "zsh-users/zsh-completions"
+# 256色表示にする
+zplug "chrissicool/zsh-256color"
+# コマンドライン上の文字リテラルの絵文字を emoji 化する
+zplug "mrowa44/emojify", as:command
 
 ## Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

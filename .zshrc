@@ -74,7 +74,8 @@ zplug load --verbose
 
 ## zsh-notifyのカスタマイズ
 ## 参考: https://github.com/marzocchi/zsh-notify
-zstyle ':notify:*' error-title "Command failed"
+# zstyle ':notify:*' error-title "Command failed"
 zstyle ':notify:*' success-title "Command succeeded"
-zstyle ':notify:*' error-sound "Glass"
+# zstyle ':notify:*' error-sound "Glass"
 zstyle ':notify:*' success-sound "default"
+zstyle ':notify:*' always-notify-on-failure no

@@ -1,0 +1,106 @@
+{
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "editor.minimap.enabled": false,
+  // "editor.acceptSuggestionOnEnter": "off", // 入力候補はEnterではなくタブで入力させる
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.inlineSuggest.enabled": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.insertFinalNewline": true,
+  "files.autoSave": "afterDelay",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "hadolint.cliOptions": ["--no-color"],
+  "hadolint.hadolintPath": "/opt/homebrew/bin/hadolint", // brewでinstallしている前提
+  "git.autofetch": true,
+  "githubPullRequests.pullBranch": "always",
+  "githubPullRequests.queries": [
+    {
+      "label": "自分のレビュー待ち",
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
+    },
+    {
+      "label": "自分に割り当て済み",
+      "query": "repo:${owner}/${repository} is:open assignee:${user}"
+    },
+    {
+      "label": "自分が作成",
+      "query": "repo:${owner}/${repository} is:open author:${user}"
+    }
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // "files.exclude": {
+  //   "**/.git": false
+  // },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "window.commandCenter": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false,
+    "yaml": false
+  },
+  "files.associations": {
+    ".env.example": "properties",
+    ".env.local": "properties",
+    ".env.stg": "properties",
+    ".env.prod": "properties"
+  },
+  "hediet.vscode-drawio.resizeImages": null,
+  "workspaceExplorer.workspaceStorageDirectory": "/Users/ueki/WorkSpaces",
+  "gitlens.rebaseEditor.ordering": "asc",
+  "dart.openDevTools": "flutter",
+  "htmltagwrap.tag": "div",
+  "window.zoomLevel": 1,
+  "vsicons.dontShowNewVersionMessage": true,
+  "git.ignoreRebaseWarning": true,
+  "diffEditor.maxComputationTime": 0,
+  "cSpell.userWords": ["Behaviour", "mufg"],
+  "mcp": {
+    "inputs": [
+      {
+        "type": "promptString",
+        "id": "github_token",
+        "description": "GitHub Personal Access Token",
+        "password": true
+      }
+    ],
+    "servers": {
+      "filesystem": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-filesystem",
+          "/Users/ueki/Downloads/tmp"
+        ]
+      },
+      "my-mcp-server": {
+        "command": "node",
+        "args": ["/Users/ueki/pg/my/my-mcp-server/dist/server.js"]
+      },
+      "github": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
+        }
+      }
+    }
+  }
+  // "terminal.integrated.defaultProfile.windows": "Git Bash",
+}

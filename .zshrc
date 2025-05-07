@@ -60,7 +60,7 @@ zplug "zsh-users/zsh-completions"
 # 256色表示にする
 zplug "chrissicool/zsh-256color"
 # コマンドライン上の文字リテラルの絵文字を emoji 化する
-zplug "mrowa44/emojify", as:command
+# zplug "mrowa44/emojify", as:command
 
 ## Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

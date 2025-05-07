@@ -99,8 +99,14 @@
         "env": {
           "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
         }
-      }
+      },
+      "fetch": {
+        "type": "stdio",
+        "command": "uvx",
+        "args": ["mcp-server-fetch"]
+      },
     }
-  }
+  },
+  "chat.mcp.discovery.enabled": true
   // "terminal.integrated.defaultProfile.windows": "Git Bash",
 }

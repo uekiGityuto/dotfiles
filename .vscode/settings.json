@@ -1,5 +1,4 @@
 {
-  "workbench.startupEditor": "none",
   "workbench.iconTheme": "vscode-icons",
   "workbench.editorAssociations": {
     "*.svg": "default"
@@ -90,8 +89,8 @@
         ]
       },
       "my-mcp-server": {
-        "command": "node",
-        "args": ["/Users/ueki/pg/my/my-mcp-server/dist/server.js"]
+        "command": "npx",
+        "args": ["ts-node", "/Users/ueki/pg/my/my-mcp-server/src/server.ts"]
       },
       "github": {
         "command": "npx",
@@ -104,7 +103,7 @@
         "type": "stdio",
         "command": "uvx",
         "args": ["mcp-server-fetch"]
-      },
+      }
     }
   },
   "chat.mcp.discovery.enabled": true

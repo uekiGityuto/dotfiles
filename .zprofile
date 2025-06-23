@@ -3,7 +3,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ssh-agentにSSH private keyを追加
 # FIXME: 本来は一度実行するだけで良いはず。毎回実行しないようにしたい。
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+# ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 # nodeバージョン管理
 ## 参考: https://dev-yakuza.posstree.com/environment/nvm/

@@ -1,13 +1,12 @@
+# インタラクティブシェルの場合のみ実行
+if [[ $- == *i* ]]; then
+
 # git
 ## 参考: https://qiita.com/mikan3rd/items/d41a8ca26523f950ea9d
 ## 参考: https://qiita.com/yamaday0u/items/ee8acb35709bcc8c7fc7
 
 ## git-promptの読み込み
 source ~/.zsh/git-prompt.sh
-## git-completionの読み込み
-fpath=(~/.zsh $fpath)
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-autoload -Uz compinit && compinit
 ## プロンプトのオプション表示設定
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -34,7 +33,6 @@ eval "$(gh completion -s zsh)"
 # # zplug
 # # 参考: https://github.com/zplug/zplug
 # # 参考: https://dev.classmethod.jp/articles/20240408-i-tried-to-get-zplug-working-now/
-
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -72,7 +70,6 @@ fi
 
 ## Then, source plugins and add commands to $PATH
 zplug load --verbose
-
 ## zsh-notifyのカスタマイズ
 ## 参考: https://github.com/marzocchi/zsh-notify
 # zstyle ':notify:*' error-title "Command failed"
@@ -80,3 +77,5 @@ zstyle ':notify:*' success-title "Command succeeded"
 # zstyle ':notify:*' error-sound "Glass"
 zstyle ':notify:*' success-sound "default"
 zstyle ':notify:*' always-notify-on-failure no
+
+fi

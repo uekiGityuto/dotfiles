@@ -31,7 +31,7 @@
   "[tsx]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "chat.mcp.discovery.enabled": false,
+  "chat.mcp.discovery.enabled": true,
   "chat.promptFiles": true,
   "dart.openDevTools": "flutter",
   "diffEditor.ignoreTrimWhitespace": false,
@@ -107,49 +107,49 @@
   "markdown.extension.tableFormatter.delimiterRowNoPadding": true,
   "markdown.extension.tableFormatter.enabled": true,
   "markdown.extension.tableFormatter.normalizeIndentation": true,
-  "mcp": {
-    "inputs": [
-      {
-        "description": "GitHub Personal Access Token",
-        "id": "github_token",
-        "password": true,
-        "type": "promptString"
-      }
-    ],
-    "servers": {
-      "fetch": {
-        "args": ["mcp-server-fetch"],
-        "command": "uvx",
-        "type": "stdio"
-      },
-      "filesystem": {
-        "args": [
-          "-y",
-          "@modelcontextprotocol/server-filesystem",
-          "/Users/ueki/Downloads/mcp"
-        ],
-        "command": "npx"
-      },
-      "gdrive": {
-        "args": ["-y", "@modelcontextprotocol/server-gdrive"],
-        "command": "npx",
-        "env": {
-          "GDRIVE_CREDENTIALS_PATH": "/Users/ueki/pg/mcp/servers/.gdrive-server-credentials.json"
-        }
-      },
-      "github": {
-        "args": ["-y", "@modelcontextprotocol/server-github"],
-        "command": "npx",
-        "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
-        }
-      },
-      "my-mcp-server": {
-        "args": ["ts-node", "/Users/ueki/pg/my/my-mcp-server/src/server.ts"],
-        "command": "npx"
-      }
-    }
-  },
+  // "mcp": {
+  //   "inputs": [
+  //     {
+  //       "description": "GitHub Personal Access Token",
+  //       "id": "github_token",
+  //       "password": true,
+  //       "type": "promptString"
+  //     }
+  //   ],
+  //   "servers": {
+  //     "fetch": {
+  //       "args": ["mcp-server-fetch"],
+  //       "command": "uvx",
+  //       "type": "stdio"
+  //     },
+  //     "filesystem": {
+  //       "args": [
+  //         "-y",
+  //         "@modelcontextprotocol/server-filesystem",
+  //         "/Users/ueki/Downloads/mcp"
+  //       ],
+  //       "command": "npx"
+  //     },
+  //     "gdrive": {
+  //       "args": ["-y", "@modelcontextprotocol/server-gdrive"],
+  //       "command": "npx",
+  //       "env": {
+  //         "GDRIVE_CREDENTIALS_PATH": "/Users/ueki/pg/mcp/servers/.gdrive-server-credentials.json"
+  //       }
+  //     },
+  //     "github": {
+  //       "args": ["-y", "@modelcontextprotocol/server-github"],
+  //       "command": "npx",
+  //       "env": {
+  //         "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_token}"
+  //       }
+  //     },
+  //     "my-mcp-server": {
+  //       "args": ["ts-node", "/Users/ueki/pg/my/my-mcp-server/src/server.ts"],
+  //       "command": "npx"
+  //     }
+  //   }
+  // },
   "security.workspace.trust.untrustedFiles": "open",
   // "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.enableMultiLinePasteWarning": "never",

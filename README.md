@@ -66,11 +66,10 @@ VS Code をインストールして同期をオンにすること。
 
 必要に応じてワークスペース内で無効にしたり、任意のタイプのファイルのみ有効にしたり、任意のタイプのファイルは別のフォーマッタを有効にするなど対応すること。
 
-# dotfiles作成方法
+# dotfiles 作成方法
 
-- 基本的には、dotfileを更新してGitHubにpushするだけで良い。
-- homebrewでインストールしたパッケージは、`brew bundle dump --force`でBrewfileを作成しておく必要がある。
-
+- 基本的には、dotfile を更新して GitHub に push するだけで良い。
+- homebrew でインストールしたパッケージは、`brew bundle dump --force`で Brewfile を作成しておく必要がある。
 
 # メモ
 
@@ -82,12 +81,25 @@ VS Code をインストールして同期をオンにすること。
 - 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
 - Docker とか Slack も brew でインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）
 
-
 ## zplug
 
-zshのpluginは、一部で管理している。
-zplugから削除したい場合は、以下手順で削除する（はず）。
-- `.zshrc`から該当のpluginの記述を削除
+zsh の plugin は、一部で管理している。
+zplug から削除したい場合は、以下手順で削除する（はず）。
+
+- `.zshrc`から該当の plugin の記述を削除
 - `zplug clean`で削除（未使用のプラグインが削除される）
 - `zplug list`で削除されたことを確認
 
+## dotfiles の作り方
+
+各種設定ファイルをリポジトリ内にコピー
+
+```bash
+mv ~/.zshrc $(pwd)/.zshrc
+```
+
+もとの場所にシンボリックリンクを作成
+
+```bash
+ln -s $(pwd)/.zshrc ~/.zshrc
+```

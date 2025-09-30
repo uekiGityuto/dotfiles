@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(**/src/**)",
+      "Write(**/src/**)",
+      "Read(**)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(rm:*)",
+      "Bash(gemini:*)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset:*)",
+      "Read(id_rsa)",
+      "Read(id_ed25519)"
+    ],
+    "ask": []
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /Users/ueki/Music/Music/Media.localized/Music/Unknown\\ Artist/Unknown\\ Album/zelda.mp3"
+          }
+        ]
+      }
+    ]
+  }
+}

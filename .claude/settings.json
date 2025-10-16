@@ -14,14 +14,17 @@
     ],
     "deny": [
       "Bash(sudo:*)",
-      "Bash(rm -rf:*)",
+      "Bash(git add:*)",
+      "Bash(git stash:*)",
       "Bash(git push:*)",
       "Bash(git rebase:*)",
       "Bash(git reset:*)",
       "Read(id_rsa)",
       "Read(id_ed25519)"
     ],
-    "ask": []
+    "ask": [
+      "Bash(rm -rf:*)"
+    ]
   },
   "hooks": {
     "Stop": [
@@ -35,5 +38,7 @@
         ]
       }
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "model": "opus"
 }

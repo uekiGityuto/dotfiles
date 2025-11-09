@@ -33,12 +33,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay /Users/ueki/Music/Music/Media.localized/Music/Unknown\\ Artist/Unknown\\ Album/zelda.mp3"
+            "command": "afplay ~/pg/my/dotfiles/assets/sounds/zelda.mp3"
           }
         ]
       }
     ]
   },
-  "alwaysThinkingEnabled": true,
-  "model": "opus"
+  "alwaysThinkingEnabled": false
 }

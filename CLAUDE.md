@@ -16,6 +16,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Homebrewパッケージのインストール
 brew bundle
 
+# Miseで言語/ツールをインストール
+mise install
+
 # Brewfileの更新（新しいパッケージを追加した後）
 brew bundle dump --force
 
@@ -42,16 +45,21 @@ zplug list
 ### ファイル構成
 - **シェル設定**: `.zshrc`（対話的設定）、`.zprofile`（環境変数）
 - **パッケージ管理**: `Brewfile`（Homebrewパッケージとcask、VS Code拡張機能）
+- **パッケージ一覧**: `BREW_PACKAGES.md`（Homebrewパッケージの用途説明）
 - **インストールスクリプト**: `install.sh`（実際の処理）、`init.sh`（ラッパー）
 - **Git設定**: `.gitconfig`（グローバル設定、エイリアス、Git LFS）
 - **SSH設定**: `.ssh/config`、`.ssh/conf.d/hosts/*.config`（ホスト別設定）
+- **Mise設定**: `.config/mise/config.toml`（言語バージョン管理）
 
 ### バージョン管理統合
-- Node.js: nvm（`.zprofile`で初期化）
-- Java: jenv（`.zprofile`で初期化）
-- Python: pyenv（`.zprofile`で初期化）
-- Ruby: rbenv（`.zprofile`で初期化）
-- Flutter: fvm（`.zprofile`でパス設定）
+[Mise](https://mise.jdx.dev/)で統一管理（`.zprofile`で初期化）：
+- Node.js
+- Ruby
+- Flutter
+- Java
+- Python
+- Go
+- pnpm
 
 ### 重要な設計方針
 1. **シンボリックリンク方式**: `install.sh`がdotfilesをホームディレクトリにシンボリックリンクとして配置

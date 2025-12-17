@@ -16,15 +16,6 @@ GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
 \$ '
 
-# GitHub Copilot
-
-## GitHub Copilot CLI
-## 参考: https://www.npmjs.com/package/@githubnext/github-copilot-cli
-eval "$(github-copilot-cli alias -- "$0")"
-
-## GitHub CLI
-eval "$(gh completion -s zsh)"
-
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/ueki/.dart-cli-completion/zsh-config.zsh ]] && . /Users/ueki/.dart-cli-completion/zsh-config.zsh || true
@@ -70,6 +61,11 @@ fi
 
 ## Then, source plugins and add commands to $PATH
 zplug load --verbose
+
+## GitHub CLI completion 
+## (`zsh: command not found: compdef`エラー回避)`)
+eval "$(gh completion -s zsh)"
+
 ## zsh-notifyのカスタマイズ
 ## 参考: https://github.com/marzocchi/zsh-notify
 # zstyle ':notify:*' error-title "Command failed"

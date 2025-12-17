@@ -71,14 +71,28 @@ VS Code をインストールして同期をオンにすること。
 - 基本的には、dotfile を更新して GitHub に push するだけで良い。
 - homebrew でインストールしたパッケージは、`brew bundle dump --force`で Brewfile を作成しておく必要がある。
 
+# バージョン管理
+
+[Mise](https://mise.jdx.dev/) で統一管理。
+
+| ツール | 管理対象 |
+|--------|----------|
+| mise | Node.js, Ruby, Flutter, Java, Python, Go, pnpm |
+
+```bash
+# グローバル設定確認
+cat ~/.config/mise/config.toml
+
+# プロジェクト別設定
+cat .mise.toml
+```
+
+# Homebrew パッケージ
+
+[BREW_PACKAGES.md](./BREW_PACKAGES.md) を参照。
+
 # メモ
 
-- node は nvm でバージョン管理
-- python は pyenv でバージョン管理
-- java は jenv でバージョン管理
-- Flutter は fvm でバージョン管理
-- ruby は rbenv でバージョン管理
-- 環境切り替えはそもそも anyenv 使うと便利かも（[参考](https://zenn.dev/ryuu/articles/use-anyversions)）
 - Docker とか Slack も brew でインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）
 
 ## zplug

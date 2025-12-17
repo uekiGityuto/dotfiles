@@ -1,9 +1,8 @@
 #!/bin/bash
 
-mkdir -p ~/.jenv/versions
-mkdir -p ~/.nvm
 mkdir -p ~/.zsh
-mkdir -p .ssh/conf.d
+mkdir -p ~/.ssh/conf.d
+mkdir -p ~/.config/mise
 
 curl -o ~/.zsh/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
@@ -16,3 +15,4 @@ ln -sf "$(pwd)/.gitconfig" ~/.gitconfig
 ln -sf "$(pwd)/.zshrc" ~/.zshrc
 ln -sf "$(pwd)/.ssh/config" ~/.ssh/config
 ln -sf "$(pwd)/.ssh/conf.d" ~/.ssh/conf.d
+ln -sf "$(pwd)/.config/mise/config.toml" ~/.config/mise/config.toml

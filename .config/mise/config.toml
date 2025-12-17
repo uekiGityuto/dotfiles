@@ -1,7 +1,7 @@
 [tools]
 flutter = "3.38.3"
 go = "1.23.3"
-java = "latest"
+java = "25.0.1"
 node = "20.12.2"
 pnpm = "10.5.2"
 python = "3.13.2"

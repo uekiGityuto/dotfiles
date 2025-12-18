@@ -70,14 +70,15 @@ VS Code をインストールして同期をオンにすること。
 
 - 基本的には、dotfile を更新して GitHub に push するだけで良い。
 - homebrew でインストールしたパッケージは、`brew bundle dump --force`で Brewfile を作成しておく必要がある。
+- 注意）go を mise で管理しているのに出力される場合は、`brew bundle dump --force --no-go`で go は除外できる。
 
 # バージョン管理
 
 [Mise](https://mise.jdx.dev/) で統一管理。
 
-| ツール | 管理対象 |
-|--------|----------|
-| mise | Node.js, Ruby, Flutter, Java, Python, Go, pnpm |
+| ツール | 管理対象                                                       |
+| ------ | -------------------------------------------------------------- |
+| mise   | Node.js, Ruby, Flutter, Java, Python, Go, Terraform, pnpm など |
 
 ```bash
 # グローバル設定確認

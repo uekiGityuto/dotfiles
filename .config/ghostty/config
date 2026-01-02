@@ -27,3 +27,6 @@ window-save-state = always
 # macOS 設定
 macos-titlebar-style = tabs
 macos-option-as-alt = true
+
+# キーバインド
+keybind = shift+enter=text:\x1b\r # Shift+Enter で改行（Claude Codeで改行するときに使っている）

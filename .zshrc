@@ -47,7 +47,7 @@ zplug "zsh-users/zsh-autosuggestions"
 # 補完強化
 zplug "zsh-users/zsh-completions"
 # 256色表示にする
-zplug "chrissicool/zsh-256color"
+# zplug "chrissicool/zsh-256color"
 # コマンドライン上の文字リテラルの絵文字を emoji 化する
 # zplug "mrowa44/emojify", as:command
 

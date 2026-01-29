@@ -4,6 +4,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Mise - Version Manager (Node.js, Ruby, Flutter, Java, Python, Go, etc.)
 eval "$(mise activate zsh)"
 
+eval "$(zoxide init zsh)"
+
 # Macは標準でLibreSSLが使用されるので、brewでインストールしたopensslが使用されるようにする
 ## 参考: https://tearoom6.hateblo.jp/entry/2020/05/30/225038
 export PATH="$(brew --prefix openssl@3)/bin:$PATH"

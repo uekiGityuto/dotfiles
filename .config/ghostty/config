@@ -36,5 +36,5 @@ quick-terminal-animation-duration = 0
 
 # キーバインド
 keybind = shift+enter=text:\x1b\r
-keybind = global:f12=toggle_quick_terminal
+keybind = global:shift+f12=toggle_quick_terminal
 

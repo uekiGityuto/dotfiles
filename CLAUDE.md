@@ -43,13 +43,16 @@ zplug list
 ## アーキテクチャと構造
 
 ### ファイル構成
-- **シェル設定**: `.zshrc`（対話的設定）、`.zprofile`（環境変数）
+- **シェル設定**: `dot_zshrc`（対話的設定）、`dot_zprofile`（環境変数）
 - **パッケージ管理**: `Brewfile`（Homebrewパッケージとcask、VS Code拡張機能）
 - **パッケージ一覧**: `BREW_PACKAGES.md`（Homebrewパッケージの用途説明）
 - **インストールスクリプト**: `install.sh`（実際の処理）、`init.sh`（ラッパー）
-- **Git設定**: `.gitconfig`（グローバル設定、エイリアス、Git LFS）
-- **SSH設定**: `.ssh/config`、`.ssh/conf.d/hosts/*.config`（ホスト別設定）
-- **Mise設定**: `.config/mise/config.toml`（言語バージョン管理）
+- **Git設定**: `dot_gitconfig`（グローバル設定、エイリアス、Git LFS）
+- **SSH設定**: `dot_ssh/config`、`dot_ssh/conf.d/hosts/*.config`（ホスト別設定）
+- **Mise設定**: `dot_config/mise/config.toml`（言語バージョン管理）
+- **Ghostty設定**: `dot_config/ghostty/config`
+- **Yazi設定**: `dot_config/yazi/yazi.toml`
+- **Claude設定**: `dot_claude/`（CLAUDE.md, settings.json, statusline.sh）
 
 ### バージョン管理統合
 [Mise](https://mise.jdx.dev/)で統一管理（`.zprofile`で初期化）：
@@ -61,11 +64,16 @@ zplug list
 - Go
 - pnpm
 
+### ファイル命名規則
+- `dot_` プレフィックス → ホームディレクトリでは `.` に対応（例: `dot_zshrc` → `~/.zshrc`）
+- ディレクトリごとシンボリックリンクにする場合、`.gitignore` で管理対象のみを許可リスト方式で管理
+
 ### 重要な設計方針
 1. **シンボリックリンク方式**: `install.sh`がdotfilesをホームディレクトリにシンボリックリンクとして配置
-2. **分離された設定**: 環境変数（`.zprofile`）と対話的設定（`.zshrc`）を分離
-3. **zplugによるプラグイン管理**: 構文ハイライト、自動補完、通知機能などを管理
-4. **VS Code Settings Sync**: VS Codeの設定は同期で管理、拡張機能はBrewfileで管理
+2. **ディレクトリごとシンボリックリンク**: `.ssh`, `.claude`, `.config/ghostty`, `.config/mise`, `.config/yazi` はディレクトリごとリンク。管理外ファイル（鍵、ランタイムデータ等）は各ディレクトリの `.gitignore` で除外
+3. **分離された設定**: 環境変数（`.zprofile`）と対話的設定（`.zshrc`）を分離
+4. **zplugによるプラグイン管理**: 構文ハイライト、自動補完、通知機能などを管理
+5. **VS Code Settings Sync**: VS Codeの設定は同期で管理、拡張機能はBrewfileで管理
 
 ## 開発時の注意点
 
@@ -84,4 +92,4 @@ zplug list
 - 削除: `.zshrc`から記述を削除後、`zplug clean`
 
 ### SSH鍵の管理
-SSH鍵ファイルは別途管理が必要（このリポジトリには含まれない）
+SSH鍵ファイルは `dot_ssh/` ディレクトリ内に存在するが、`.gitignore` で除外されておりGit管理対象外

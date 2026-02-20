@@ -1,0 +1,7 @@
+*
+!.gitignore
+!config
+!conf.d/
+!conf.d/.gitignore
+!conf.d/hosts/
+!conf.d/hosts/*.config

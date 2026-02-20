@@ -35,6 +35,13 @@
 | ---------- | ----------------- |
 | gemini-cli | Google Gemini CLI |
 
+## コンテナ
+
+| パッケージ | 用途                                       |
+| ---------- | ------------------------------------------ |
+| colima     | macOS 用コンテナランタイム                 |
+| docker     | Docker CLI（コンテナ管理）                 |
+
 ## クラウド/インフラ
 
 | パッケージ | 用途             |
@@ -73,5 +80,6 @@
 | android-studio              | Android 開発 IDE            |
 | claude-code                 | Claude Code CLI             |
 | font-jetbrains-mono-nerd-font | Nerd Font（アイコン対応）   |
+| gcloud-cli                  | Google Cloud CLI              |
 | ghostty                     | 高速ターミナルエミュレータ  |
 | visual-studio-code          | コードエディタ              |

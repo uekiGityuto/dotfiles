@@ -10,21 +10,27 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(rm:*)",
-      "Bash(gemini:*)"
+      "Bash(gemini:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr view:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:claude.ai)",
+      "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": [
       "Bash(sudo:*)",
       "Bash(git add:*)",
+      "Bash(git commit:*)",
       "Bash(git stash:*)",
       "Bash(git push:*)",
       "Bash(git rebase:*)",
       "Bash(git reset:*)",
+      "Bash(git checkout:*)",
       "Read(id_rsa)",
       "Read(id_ed25519)"
     ],
-    "ask": [
-      "Bash(rm -rf:*)"
-    ]
+    "ask": ["Bash(rm -rf:*)"]
   },
   "hooks": {
     "Stop": [

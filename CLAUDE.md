@@ -46,7 +46,7 @@ zplug list
 - **シェル設定**: `dot_zshrc`（対話的設定）、`dot_zprofile`（環境変数）
 - **パッケージ管理**: `Brewfile`（Homebrewパッケージとcask、VS Code拡張機能）
 - **パッケージ一覧**: `BREW_PACKAGES.md`（Homebrewパッケージの用途説明）
-- **インストールスクリプト**: `install.sh`（実際の処理）、`init.sh`（ラッパー）
+- **インストールスクリプト**: `install.sh`（git-prompt関連のダウンロード、シンボリックリンク作成）、`init.sh`（ラッパー）
 - **Git設定**: `dot_gitconfig`（グローバル設定、エイリアス、Git LFS）
 - **SSH設定**: `dot_ssh/config`、`dot_ssh/conf.d/hosts/*.config`（ホスト別設定）
 - **Mise設定**: `dot_config/mise/config.toml`（言語バージョン管理）
@@ -55,18 +55,11 @@ zplug list
 - **Claude設定**: `dot_claude/`（CLAUDE.md, settings.json, statusline.sh）
 
 ### バージョン管理統合
-[Mise](https://mise.jdx.dev/)で統一管理（`.zprofile`で初期化）：
-- Node.js
-- Ruby
-- Flutter
-- Java
-- Python
-- Go
-- pnpm
+[Mise](https://mise.jdx.dev/)で統一管理（`.zprofile`で初期化）。管理対象は `dot_config/mise/config.toml` を参照。
 
 ### ファイル命名規則
 - `dot_` プレフィックス → ホームディレクトリでは `.` に対応（例: `dot_zshrc` → `~/.zshrc`）
-- ディレクトリごとシンボリックリンクにする場合、`.gitignore` で管理対象のみを許可リスト方式で管理
+- ディレクトリごとシンボリックリンクにする場合、各ディレクトリ内の `.gitignore` で許可リスト方式（`*` で全除外後、`!` で管理対象のみ許可）を使用
 
 ### 重要な設計方針
 1. **シンボリックリンク方式**: `install.sh`がdotfilesをホームディレクトリにシンボリックリンクとして配置
@@ -84,7 +77,7 @@ zplug list
 
 ### 新しいHomebrewパッケージの追加
 1. `brew install <package>` でインストール
-2. `brew bundle dump --force` でBrewfileを更新
+2. `brew bundle dump --force` でBrewfileを更新（miseで管理しているツールが出力される場合は `--no-go` 等で除外）
 3. Brewfileをコミット
 
 ### zplugプラグインの追加/削除

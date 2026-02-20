@@ -39,9 +39,9 @@
       }
     ]
   },
-  "alwaysThinkingEnabled": true,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
-  }
+  },
+  "alwaysThinkingEnabled": true
 }

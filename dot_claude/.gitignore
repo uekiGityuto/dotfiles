@@ -1,0 +1,8 @@
+# Git管理対象: CLAUDE.md, settings.json, statusline.sh
+# それ以外は全て除外
+
+*
+!.gitignore
+!CLAUDE.md
+!settings.json
+!statusline.sh

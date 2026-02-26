@@ -4,33 +4,37 @@
       "Edit(**/src/**)",
       "Write(**/src/**)",
       "Read(**)",
-      "Bash(git status:*)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "Bash(ls:*)",
-      "Bash(cat:*)",
-      "Bash(rm:*)",
-      "Bash(gemini:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh pr diff:*)",
-      "Bash(gh pr view:*)",
+      "Bash(* --version)",
+      "Bash(* --help *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(rm *)",
+      "Bash(gemini *)",
+      "Bash(git *status*)",
+      "Bash(git *diff*)",
+      "Bash(git *log*)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr view *)",
+      "Bash(gh search issues *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
-      "WebFetch(domain:docs.anthropic.com)"
+      "WebFetch(domain:docs.anthropic.com)",
+      "mcp__pencil"
     ],
     "deny": [
-      "Bash(sudo:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git stash:*)",
-      "Bash(git push:*)",
-      "Bash(git rebase:*)",
-      "Bash(git reset:*)",
-      "Bash(git checkout:*)",
+      "Bash(sudo *)",
       "Read(id_rsa)",
-      "Read(id_ed25519)"
+      "Read(id_ed25519)",
+      "Bash(git *reset *)",
+      "Bash(git *checkout *)",
+      "Bash(* publish *)"
     ],
-    "ask": ["Bash(rm -rf:*)"]
+    "ask": [
+      "Bash(git *rebase *)",
+      "Bash(git *config *)",
+      "Bash(rm -rf *)"
+    ]
   },
   "hooks": {
     "Stop": [
@@ -39,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay ~/pg/my/dotfiles/assets/sounds/zelda.mp3"
+            "command": "afplay ~/pg/my/dotfiles/assets/sounds/zelda.mp3 || true"
           }
         ]
       }
@@ -49,5 +53,6 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }

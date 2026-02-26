@@ -19,3 +19,4 @@ ln -sfn "$(pwd)/dot_claude" ~/.claude
 ln -sfn "$(pwd)/dot_config/ghostty" ~/.config/ghostty
 ln -sfn "$(pwd)/dot_config/mise" ~/.config/mise
 ln -sfn "$(pwd)/dot_config/yazi" ~/.config/yazi
+ln -sfn "$(pwd)/dot_takt" ~/.takt

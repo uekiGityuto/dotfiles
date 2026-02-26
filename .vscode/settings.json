@@ -1,1 +1,11 @@
-{}
+{
+  "files.associations": {
+    "dot_gitconfig": "ini",
+    "dot_zprofile": "shellscript",
+    "dot_zshrc": "shellscript"
+  },
+  "shellcheck.customArgs": [
+    "-e",
+    "SC2148"
+  ]
+}

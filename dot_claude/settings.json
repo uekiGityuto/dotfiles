@@ -40,13 +40,31 @@
     ]
   },
   "hooks": {
-    "Stop": [
+    "Notification": [
       {
-        "matcher": "",
+        "matcher": "permission_prompt",
         "hooks": [
           {
             "type": "command",
-            "command": "afplay ~/pg/my/dotfiles/assets/sounds/zelda.mp3 || true"
+            "command": "afplay /System/Library/Sounds/Hero.aiff || true"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff || true"
+          }
+        ]
+      },
+      {
+        "matcher": "elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Hero.aiff || true"
           }
         ]
       }

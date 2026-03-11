@@ -62,9 +62,18 @@ fi
 ## Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-## GitHub CLI completion 
+## GitHub CLI completion
 ## (`zsh: command not found: compdef`エラー回避)`)
 eval "$(gh completion -s zsh)"
+
+## ghq + fzf でリポジトリに移動
+function g() {
+  local repo
+  repo=$(ghq list | fzf)
+  if [ -n "$repo" ]; then
+    cd "$(ghq root)/$repo" || return
+  fi
+}
 
 ## zsh-notifyのカスタマイズ
 ## 参考: https://github.com/marzocchi/zsh-notify

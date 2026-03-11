@@ -13,6 +13,7 @@
 | coreutils  | GNU 版コマンド（Linux 互換の ls, cp, mv 等） |
 | fzf        | ファジーファインダー（インタラクティブ検索） |
 | gh         | GitHub CLI                                   |
+| ghq        | リポジトリ管理（ローカルリポジトリの一元管理）|
 | git-lfs    | Git Large File Storage（大容量ファイル管理） |
 | ripgrep    | 高速 grep（コード検索）                      |
 | jq         | JSON パーサー                                |

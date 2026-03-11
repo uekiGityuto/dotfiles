@@ -8,7 +8,8 @@ eval "$(zoxide init zsh)"
 
 # Macは標準でLibreSSLが使用されるので、brewでインストールしたopensslが使用されるようにする
 ## 参考: https://tearoom6.hateblo.jp/entry/2020/05/30/225038
-export PATH="$(brew --prefix openssl@3)/bin:$PATH"
+OPENSSL_BIN="$(brew --prefix openssl@3)/bin"
+export PATH="$OPENSSL_BIN:$PATH"
 
 # MySQLクライアントのパスを通す
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"

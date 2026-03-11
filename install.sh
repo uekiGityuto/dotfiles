@@ -6,7 +6,11 @@ mkdir -p ~/.config
 curl -o ~/.zsh/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 curl -o ~/.zsh/_git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+if [ -d ~/.zsh/zsh-autosuggestions ]; then
+	git -C ~/.zsh/zsh-autosuggestions pull --ff-only
+else
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+fi
 
 # 個別ファイル
 ln -sf "$(pwd)/dot_zprofile" ~/.zprofile

@@ -11,11 +11,12 @@
 | パッケージ | 用途                                         |
 | ---------- | -------------------------------------------- |
 | coreutils  | GNU 版コマンド（Linux 互換の ls, cp, mv 等） |
+| fd         | 高速 find（ファイル検索）※ yazi でも使用     |
 | fzf        | ファジーファインダー（インタラクティブ検索） |
 | gh         | GitHub CLI                                   |
 | ghq        | リポジトリ管理（ローカルリポジトリの一元管理）|
 | git-lfs    | Git Large File Storage（大容量ファイル管理） |
-| ripgrep    | 高速 grep（コード検索）                      |
+| ripgrep    | 高速 grep（コード検索）※ yazi でも使用       |
 | jq         | JSON パーサー                                |
 | yq         | YAML パーサー                                |
 | tree       | ディレクトリ構造表示                         |

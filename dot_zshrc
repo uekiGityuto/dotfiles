@@ -71,7 +71,7 @@ function g() {
   local repo
   repo=$(ghq list | fzf)
   if [ -n "$repo" ]; then
-    cd "$(ghq root)/$repo" || return
+    builtin cd "$(ghq root)/$repo" || return
   fi
 }
 

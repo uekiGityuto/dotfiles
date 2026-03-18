@@ -1,9 +1,13 @@
 {
+  "language": "japanese",
   "permissions": {
     "allow": [
+      "Read(**)",
       "Edit(**/src/**)",
       "Write(**/src/**)",
-      "Read(**)",
+      "Read(~/.claude/tmp/pr-body.md)",
+      "Edit(~/.claude/tmp/pr-body.md)",
+      "Write(~/.claude/tmp/pr-body.md)",
       "Bash(* --version)",
       "Bash(* --help *)",
       "Bash(ls *)",
@@ -25,21 +29,37 @@
       "WebFetch(domain:docs.anthropic.com)",
       "mcp__pencil"
     ],
+    "ask": ["Bash(git *config *)", "Bash(rm -rf *)"],
     "deny": [
       "Bash(sudo *)",
       "Read(id_rsa)",
       "Read(id_ed25519)",
-      "Bash(git *reset *)",
-      "Bash(git *checkout *)",
-      "Bash(* publish *)"
+      "Read(*.pem)",
+      "Read(**/credentials/**)",
+      "Read(~/credentials/**)",
+      "Bash(*publish*)",
+      "Bash(terraform *apply*)",
+      "Bash(kubectl *apply*)",
+      "Bash(*deploy*)"
     ],
-    "ask": [
-      "Bash(git *rebase *)",
-      "Bash(git *config *)",
-      "Bash(rm -rf *)"
-    ]
+    "additionalDirectories": ["/Users/ueki/Downloads/work", "~/.claude/tmp"]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-chained-commands.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/enforce-body-file.sh"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "matcher": "permission_prompt",

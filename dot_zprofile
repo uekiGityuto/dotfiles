@@ -12,7 +12,7 @@ OPENSSL_BIN="$(brew --prefix openssl@3)/bin"
 export PATH="$OPENSSL_BIN:$PATH"
 
 # MySQLクライアントのパスを通す
-# export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Android
 ## adbコマンドのパスを通す

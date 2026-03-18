@@ -5,6 +5,8 @@
 !statusline.sh
 !commands/
 !commands/**
+!hooks/
+!hooks/**
 # !skills/
 # !skills/**
 

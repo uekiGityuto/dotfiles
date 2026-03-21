@@ -58,6 +58,10 @@
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/enforce-body-file.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/block-cd.sh"
           }
         ]
       }

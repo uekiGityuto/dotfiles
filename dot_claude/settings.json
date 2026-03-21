@@ -1,5 +1,4 @@
 {
-  "language": "japanese",
   "permissions": {
     "allow": [
       "Read(**)",
@@ -29,7 +28,6 @@
       "WebFetch(domain:docs.anthropic.com)",
       "mcp__pencil"
     ],
-    "ask": ["Bash(git *config *)", "Bash(rm -rf *)"],
     "deny": [
       "Bash(sudo *)",
       "Read(id_rsa)",
@@ -42,7 +40,14 @@
       "Bash(kubectl *apply*)",
       "Bash(*deploy*)"
     ],
-    "additionalDirectories": ["/Users/ueki/Downloads/work", "~/.claude/tmp"]
+    "ask": [
+      "Bash(git *config *)",
+      "Bash(rm -rf *)"
+    ],
+    "additionalDirectories": [
+      "/Users/ueki/Downloads/work",
+      "~/.claude/tmp"
+    ]
   },
   "hooks": {
     "PreToolUse": [
@@ -94,6 +99,17 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
+  "language": "japanese",
+  "sandbox": {
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowLocalBinding": true
+    },
+    "env": {
+      "TMPPREFIX": "/private/tmp/claude-501/zsh"
+    }
+  },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "voiceEnabled": true
 }

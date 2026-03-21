@@ -15,6 +15,8 @@
       "Bash(pwd)",
       "Bash(which *)",
       "Bash(wc *)",
+      "Bash(head *)",
+      "Bash(tail *)",
       "Bash(gemini *)",
       "Bash(git *status*)",
       "Bash(git *diff*)",
@@ -40,14 +42,8 @@
       "Bash(kubectl *apply*)",
       "Bash(*deploy*)"
     ],
-    "ask": [
-      "Bash(git *config *)",
-      "Bash(rm -rf *)"
-    ],
-    "additionalDirectories": [
-      "/Users/ueki/Downloads/work",
-      "~/.claude/tmp"
-    ]
+    "ask": ["Bash(git *config *)"],
+    "additionalDirectories": ["/Users/ueki/Downloads/work", "~/.claude/tmp"]
   },
   "hooks": {
     "PreToolUse": [

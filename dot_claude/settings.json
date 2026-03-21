@@ -8,7 +8,7 @@
       "Edit(~/.claude/tmp/pr-body.md)",
       "Write(~/.claude/tmp/pr-body.md)",
       "Bash(* --version)",
-      "Bash(* --help *)",
+      "Bash(* --help)",
       "Bash(ls *)",
       "Bash(cat *)",
       "Bash(mkdir *)",
@@ -21,6 +21,7 @@
       "Bash(git *status*)",
       "Bash(git *diff*)",
       "Bash(git *log*)",
+      "Bash(git *lf-files*)",
       "Bash(gh pr list *)",
       "Bash(gh pr diff *)",
       "Bash(gh pr view *)",
@@ -106,6 +107,6 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }

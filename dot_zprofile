@@ -20,6 +20,9 @@ export PATH="$PATH":"$HOME/Library/Android/sdk/platform-tools"
 ## adbコマンドのパスを通す
 export PATH="$PATH":"$HOME/Library/Android/sdk/emulator"
 
+# browser-useなど
+export PATH="$HOME/.local/bin:$PATH"
+
 # alias
 alias k='kubectl'
 alias d='docker'

@@ -26,6 +26,8 @@
       "Bash(gh pr diff *)",
       "Bash(gh pr view *)",
       "Bash(gh search issues *)",
+      "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
+      "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:docs.anthropic.com)",
@@ -44,7 +46,7 @@
       "Bash(*deploy*)"
     ],
     "ask": ["Bash(git *config *)"],
-    "additionalDirectories": ["/Users/ueki/Downloads/work", "~/.claude/tmp"]
+    "additionalDirectories": ["~/Downloads/work", "~/.claude/tmp"]
   },
   "hooks": {
     "PreToolUse": [

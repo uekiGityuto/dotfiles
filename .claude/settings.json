@@ -37,7 +37,12 @@
       "Bash(brew install *)",
       "Bash(brew list *)",
       "Bash(brew bundle dump --force*)",
-      "Bash(make brew-dump)"
+      "Bash(make brew-dump)",
+      "Skill(browser-use)",
+      "Skill(create-pr-with-screenshots)",
+      "Skill(find-skills)",
+      "Skill(skill-creator)",
+      "Skill(takt)"
     ],
     "deny": [
       "Bash(git *add*)",

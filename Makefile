@@ -1,4 +1,4 @@
-.PHONY: init install brew-dump reload zplug-install zplug-update zplug-clean
+.PHONY: init install brew-dump reload zplug-install zplug-update zplug-clean uv-install uv-dump
 
 ## 初期セットアップ（ディレクトリ作成、ファイルダウンロード、シンボリックリンク作成）
 init:
@@ -35,3 +35,11 @@ zplug-update:
 ## 未使用zplugプラグインの削除
 zplug-clean:
 	zplug clean
+
+## uv toolのインストール
+uv-install:
+	while read -r tool; do uv tool install "$$tool"; done < uv-tools.txt
+
+## uv-tools.txtを現在の状態で更新
+uv-dump:
+	uv tool list --short | cut -d' ' -f1 > uv-tools.txt

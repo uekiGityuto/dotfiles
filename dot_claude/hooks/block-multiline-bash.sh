@@ -14,7 +14,7 @@ fi
 # 複数行チェック（heredocや長いインライン文字列を検出）
 LINE_COUNT=$(echo "$COMMAND" | wc -l | tr -d ' ')
 if [ "$LINE_COUNT" -gt 1 ]; then
-  echo "複数行のBashコマンドは使わないでください。長い文字列（PRのbody、プロンプト等）はWrite toolで /tmp/claude/bash-body.txt に書き出してから、ファイルを参照するコマンド（--body-file、< file、-f file 等）を使ってください。" >&2
+  echo "複数行のBashコマンドは禁止です。長い文字列はWrite toolで /tmp/claude/bash-body.txt に書き出してください。例: gh pr create --body-file /tmp/claude/bash-body.txt" >&2
   exit 2
 fi
 

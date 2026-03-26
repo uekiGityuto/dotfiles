@@ -7,6 +7,12 @@ description: >-
 user-invocable: true
 argument-hint: "[レビュー対象やCodexへの相談内容]"
 allowed-tools: Bash(cat /tmp/claude/bash-body.txt | codex *), Read, Write(/tmp/claude/bash-body.txt), Glob, Grep
+hooks:
+  PermissionRequest:
+    - matcher: Bash
+      hooks:
+        - type: command
+          command: bash ~/.claude/skills/codex/auto-approve-codex.sh
 ---
 
 あなたは、Claude Code で進めている作業について、Codex に第三者レビューまたは相談を依頼し、その結果を受けてユーザーに報告・対応する役割を担う。

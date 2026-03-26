@@ -4,9 +4,9 @@
       "Read(**)",
       "Edit(**/src/**)",
       "Write(**/src/**)",
-      "Read(~/.claude/tmp/pr-body.md)",
-      "Edit(~/.claude/tmp/pr-body.md)",
-      "Write(~/.claude/tmp/pr-body.md)",
+      "Read(**/tmp/claude/**)",
+      "Edit(**/tmp/claude/**)",
+      "Write(**/tmp/claude/**)",
       "Bash(* --version)",
       "Bash(* --help)",
       "Bash(ls *)",
@@ -73,6 +73,26 @@
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/block-cd.sh"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/auto-approve-tmp-write.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/auto-approve-tmp-write.sh"
           }
         ]
       }

@@ -6,7 +6,7 @@ description: >-
   使用場面: (1) 実装後のコードレビュー、(2) 設計・方針の相談、(3) Claude の回答が微妙な時のセカンドオピニオン、(4) 議論・ディベート
 user-invocable: true
 argument-hint: "[レビュー対象やCodexへの相談内容]"
-allowed-tools: Bash(codex *), Read, Write(/tmp/claude/bash-body.txt), Glob, Grep
+allowed-tools: Bash(cat /tmp/claude/bash-body.txt | codex *), Read, Write(/tmp/claude/bash-body.txt), Glob, Grep
 ---
 
 あなたは、Claude Code で進めている作業について、Codex に第三者レビューまたは相談を依頼し、その結果を受けてユーザーに報告・対応する役割を担う。
@@ -71,10 +71,10 @@ Return your answer in this structure:
 5. Recommended Actions
 ```
 
-2. Bash で実行：
+2. Bash で実行（**sandbox外で実行すること** — codexはmacOS sandbox内ではSystemConfiguration制限によりパニックする。`dangerouslyDisableSandbox: true` を指定する）：
 
 ```bash
-codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/bash-body.txt
+cat /tmp/claude/bash-body.txt | codex exec --ephemeral -o /tmp/claude/codex_result.txt -
 ```
 
 3. Read tool で `/tmp/claude/codex_result.txt` を読み取る。
@@ -82,6 +82,7 @@ codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/bash-body
 - `--ephemeral`: セッション保存しない
 - `-o /tmp/claude/codex_result.txt`: 最終回答をファイル出力（出力が長くても確実に取得）
 - カレントディレクトリはプロジェクトルートであること
+- **sandbox外で実行する**（[claude-code#26879](https://github.com/anthropics/claude-code/issues/26879)）
 
 ### Step 3: 結果の評価と報告
 
@@ -162,10 +163,10 @@ Codex の回答を取得したら：
 Provide a concrete answer with specific examples or code if applicable.
 ```
 
-2. Bash で実行：
+2. Bash で実行（**sandbox外で実行すること** — `dangerouslyDisableSandbox: true` を指定する）：
 
 ```bash
-codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/bash-body.txt
+cat /tmp/claude/bash-body.txt | codex exec --ephemeral -o /tmp/claude/codex_result.txt -
 ```
 
 3. Read tool で `/tmp/claude/codex_result.txt` を読み取る。
@@ -217,10 +218,10 @@ Claude has the following view:
 Evaluate Claude's position directly. State clearly where you agree and disagree, with specific reasons. Be direct.
 ```
 
-2. Bash で実行：
+2. Bash で実行（**sandbox外で実行すること** — `dangerouslyDisableSandbox: true` を指定する）：
 
 ```bash
-codex exec --ephemeral -o /tmp/claude/codex_debate.txt - < /tmp/claude/bash-body.txt
+cat /tmp/claude/bash-body.txt | codex exec --ephemeral -o /tmp/claude/codex_debate.txt -
 ```
 
 3. Read tool で `/tmp/claude/codex_debate.txt` を読み取り、Codex の回答を**全文そのまま**表示する。

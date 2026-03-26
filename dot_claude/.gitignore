@@ -11,3 +11,5 @@
 skills/**
 !skills/create-pr-with-screenshots/
 !skills/create-pr-with-screenshots/**
+!skills/codex/
+!skills/codex/**

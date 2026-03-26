@@ -17,6 +17,8 @@
       "Bash(wc *)",
       "Bash(head *)",
       "Bash(tail *)",
+      "Bash(grep *)",
+      "Bash(find *)",
       "Bash(gemini *)",
       "Bash(git *status*)",
       "Bash(git *diff*)",
@@ -25,13 +27,20 @@
       "Bash(gh pr list *)",
       "Bash(gh pr diff *)",
       "Bash(gh pr view *)",
+      "Bash(gh issue view *)",
       "Bash(gh search issues *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:docs.anthropic.com)",
-      "mcp__pencil"
+      "mcp__pencil",
+      "Skill(browser-use)",
+      "Skill(create-pr-with-screenshots)",
+      "Skill(find-skills)",
+      "Skill(skill-creator)",
+      "Skill(takt)",
+      "Skill(codex)"
     ],
     "deny": [
       "Bash(sudo *)",
@@ -46,7 +55,7 @@
       "Bash(*deploy*)"
     ],
     "ask": ["Bash(git *config *)"],
-    "additionalDirectories": ["~/Downloads/work", "~/.claude/tmp"]
+    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
   },
   "hooks": {
     "PreToolUse": [
@@ -110,9 +119,13 @@
     },
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
-    }
+    },
+    "excludedCommands": ["git *", "gh *"]
   },
   "alwaysThinkingEnabled": true,
   "voiceEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
+  }
 }

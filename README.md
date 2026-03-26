@@ -16,20 +16,13 @@ Mac の PC を初期状態からセットアップする前提。
 ./init.sh
 ```
 
-#### パッケージインストール
+`init.sh` は以下を順に実行する:
+1. `install.sh`（シンボリックリンクの作成）
+2. `brew bundle`（Homebrew パッケージのインストール）
+3. `mise install`（言語/ツールのインストール）
+4. `uv tool install`（uv ツールのインストール）
 
-```
-brew bundle
-```
-
-エラーが起きる気がするので、セットアップスクリプトにはいれていない。
-
-エラーが起きた場合はエラー内容に応じて対応すること。  
-例えば、adoptopenjdk8 のインストールに失敗した場合は、以下コマンドでインストールする。（[参考](https://qiita.com/gishi_yama/items/9cdb3d95ee7f25b8018f)）
-
-```
-brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
-```
+`brew bundle` でエラーが起きた場合はエラー内容に応じて対応すること。
 
 #### config 再読み込み
 

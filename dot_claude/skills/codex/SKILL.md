@@ -6,7 +6,7 @@ description: >-
   使用場面: (1) 実装後のコードレビュー、(2) 設計・方針の相談、(3) Claude の回答が微妙な時のセカンドオピニオン、(4) 議論・ディベート
 user-invocable: true
 argument-hint: "[レビュー対象やCodexへの相談内容]"
-allowed-tools: Bash(codex *), Read, Write(/tmp/claude/codex_*), Glob, Grep
+allowed-tools: Bash(codex *), Read, Write(/tmp/claude/bash-body.txt), Glob, Grep
 ---
 
 あなたは、Claude Code で進めている作業について、Codex に第三者レビューまたは相談を依頼し、その結果を受けてユーザーに報告・対応する役割を担う。
@@ -19,7 +19,8 @@ allowed-tools: Bash(codex *), Read, Write(/tmp/claude/codex_*), Glob, Grep
 
 ユーザーの意図からモードを判断する。
 
-- **レビューモード**（デフォルト）: Codex に一方向でレビューを依頼し、Claude が結果を評価して報告する。妥当な指摘があれば Claude 自身が修正対応まで行う。
+- **レビューモード**（デフォルト）: Codex に一方向でレビューを依頼し、Claude が結果を評価して報告する。妥当な指摘があれば、ユーザーに確認の上で修正対応を行う。
+- **自律レビューモード**: ユーザーが「指摘がなくなるまで対応して」「レビュー通るまで直して」等、自動修正を求めた場合。Codex にレビューを依頼し、指摘があれば Claude が自分で修正 → 再レビューを指摘ゼロになるまでループする（最大3ラウンド）。ユーザーへの確認は最終報告時のみ。
 - **相談モード**: ユーザーが「Codexにも聞いて」「相談して」と言った場合。ユーザーの相談内容をCodexに転送し、結果を報告する。
 - **議論モード**: ユーザーが「議論して」「反論して」「ディベートして」と言った場合。Claude が自分の立場を明確にし、Codex と往復議論を行う（最大3ラウンド）。
 
@@ -39,7 +40,7 @@ allowed-tools: Bash(codex *), Read, Write(/tmp/claude/codex_*), Glob, Grep
 
 ### Step 2: Codex の実行
 
-1. Write tool で `/tmp/claude/codex_prompt.txt` にプロンプトを書き出す：
+1. Write tool で `/tmp/claude/bash-body.txt` にプロンプトを書き出す：
 
 ```
 # Review Request
@@ -73,7 +74,7 @@ Return your answer in this structure:
 2. Bash で実行：
 
 ```bash
-codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/codex_prompt.txt
+codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/bash-body.txt
 ```
 
 3. Read tool で `/tmp/claude/codex_result.txt` を読み取る。
@@ -114,13 +115,46 @@ Codex の回答を取得したら：
 
 ---
 
+## 自律レビューモード
+
+レビューモードと同じ Step 1・Step 2 でCodexを実行する。異なるのは Step 3 のみ。
+
+### Step 3: 自動修正ループ（最大3ラウンド）
+
+1. Codex の回答を評価し、妥当な指摘を抽出する。
+2. 指摘がなければ、最終報告（下記）へ進む。
+3. 指摘があれば：
+   - Claude 自身が修正を実施する。
+   - 修正内容を踏まえて Step 1・Step 2 を再実行する（前回の指摘と修正内容を established_facts に追加）。
+   - 指摘ゼロまたは3ラウンド到達でループ終了。
+
+### Step 4: 最終報告
+
+```
+## Codex 自律レビュー完了
+
+### ラウンド数
+{n}ラウンド（指摘ゼロ / 上限到達）
+
+### 対応した指摘
+- [各ラウンドで修正した内容を箇条書き]
+
+### 残存指摘（上限到達の場合のみ）
+- [未対応の指摘があれば記載]
+
+---
+**Claude のコメント:** [全体を通しての補足]
+```
+
+---
+
 ## 相談モード
 
 ユーザーの相談内容をそのまま Codex に転送する。
 
 ### Step 1: Codex の実行
 
-1. Write tool で `/tmp/claude/codex_prompt.txt` にプロンプトを書き出す：
+1. Write tool で `/tmp/claude/bash-body.txt` にプロンプトを書き出す：
 
 ```
 {ユーザーの相談内容をそのまま、または要点を整理して記載}
@@ -131,7 +165,7 @@ Provide a concrete answer with specific examples or code if applicable.
 2. Bash で実行：
 
 ```bash
-codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/codex_prompt.txt
+codex exec --ephemeral -o /tmp/claude/codex_result.txt - < /tmp/claude/bash-body.txt
 ```
 
 3. Read tool で `/tmp/claude/codex_result.txt` を読み取る。
@@ -171,7 +205,7 @@ Codex に送る前に、Claude 自身の見解をユーザーに示す。
 
 依頼文に Claude の立場を追加して送信する。
 
-1. Write tool で `/tmp/claude/codex_prompt.txt` にプロンプトを書き出す：
+1. Write tool で `/tmp/claude/bash-body.txt` にプロンプトを書き出す：
 
 ```
 {依頼文}
@@ -186,7 +220,7 @@ Evaluate Claude's position directly. State clearly where you agree and disagree,
 2. Bash で実行：
 
 ```bash
-codex exec --ephemeral -o /tmp/claude/codex_debate.txt - < /tmp/claude/codex_prompt.txt
+codex exec --ephemeral -o /tmp/claude/codex_debate.txt - < /tmp/claude/bash-body.txt
 ```
 
 3. Read tool で `/tmp/claude/codex_debate.txt` を読み取り、Codex の回答を**全文そのまま**表示する。

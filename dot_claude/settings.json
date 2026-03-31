@@ -49,13 +49,32 @@
       "Read(*.pem)",
       "Read(**/credentials/**)",
       "Read(~/credentials/**)",
-      "Bash(*publish*)",
+      "Bash(npm *publish*)",
+      "Bash(yarn *publish*)",
+      "Bash(pnpm *publish*)",
+      "Bash(cargo *publish*)",
+      "Bash(gem *push*)",
+      "Bash(twine *upload*)",
+      "Bash(pip *publish*)",
       "Bash(terraform *apply*)",
       "Bash(kubectl *apply*)",
-      "Bash(*deploy*)"
+      "Bash(docker *push*)",
+      "Bash(aws *deploy*)",
+      "Bash(gcloud *deploy*)",
+      "Bash(firebase *deploy*)",
+      "Bash(vercel *deploy*)",
+      "Bash(netlify *deploy*)",
+      "Bash(flyctl *deploy*)",
+      "Bash(helm *install*)",
+      "Bash(helm *upgrade*)"
     ],
-    "ask": ["Bash(git *config *)"],
-    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
+    "ask": [
+      "Bash(git *config *)"
+    ],
+    "additionalDirectories": [
+      "~/Downloads/work",
+      "/tmp/claude"
+    ]
   },
   "hooks": {
     "PreToolUse": [
@@ -131,21 +150,33 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "codex@openai-codex": true
+  },
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
   "language": "japanese",
   "sandbox": {
     "autoAllowBashIfSandboxed": true,
     "network": {
       "allowLocalBinding": true
     },
+    "excludedCommands": [
+      "git *",
+      "gh *"
+    ],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
-    },
-    "excludedCommands": ["git *", "gh *"]
+    }
   },
   "alwaysThinkingEnabled": true,
   "voiceEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
-  }
+  "skipDangerousModePermissionPrompt": true
 }

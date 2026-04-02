@@ -37,6 +37,7 @@
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:anthropic.com)",
       "WebFetch(domain:openai.com)",
+      "WebFetch(domain:agentskills.io)",
       "WebFetch(domain:google.com)",
       "WebFetch(domain:googleapis.com)",
       "WebFetch(domain:context7.com)",

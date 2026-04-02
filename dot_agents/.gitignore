@@ -1,3 +1,7 @@
 *
 !.gitignore
 !.skill-lock.json
+!skills/
+skills/**
+!skills/agent-memory/
+!skills/agent-memory/**

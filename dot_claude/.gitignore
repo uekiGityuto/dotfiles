@@ -13,3 +13,4 @@ skills/**
 !skills/create-pr-with-screenshots/**
 !skills/ask-codex/
 !skills/ask-codex/**
+!skills/agent-memory

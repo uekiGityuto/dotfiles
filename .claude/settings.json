@@ -45,7 +45,7 @@
       "Bash(brew bundle dump --force*)",
       "Bash(make brew-dump)",
       "Bash(rsync *)",
-      "Bash(ln -sf *)"
+      "Bash(ln *)"
     ],
     "deny": [
       "Bash(git *add*)",

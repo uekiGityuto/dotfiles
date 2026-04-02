@@ -71,8 +71,13 @@
       "Bash(helm *install*)",
       "Bash(helm *upgrade*)"
     ],
-    "ask": ["Bash(git *config *)"],
-    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
+    "ask": [
+      "Bash(git *config *)"
+    ],
+    "additionalDirectories": [
+      "~/Downloads/work",
+      "/tmp/claude"
+    ]
   },
   "hooks": {
     "PreToolUse": [
@@ -150,7 +155,8 @@
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "context7@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -166,13 +172,16 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": ["git *", "gh *"],
+    "excludedCommands": [
+      "git *",
+      "gh *"
+    ],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
     }
   },
   "alwaysThinkingEnabled": true,
   "voiceEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "autoMemoryEnabled": false
+  "autoMemoryEnabled": false,
+  "skipDangerousModePermissionPrompt": true
 }

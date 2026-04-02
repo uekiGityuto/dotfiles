@@ -19,7 +19,9 @@
       "Bash(tail *)",
       "Bash(grep *)",
       "Bash(find *)",
+      "Bash(sips *)",
       "Bash(gemini *)",
+      "Bash(codex *)",
       "Bash(git *status*)",
       "Bash(git *diff*)",
       "Bash(git *log*)",
@@ -40,7 +42,8 @@
       "Skill(find-skills)",
       "Skill(skill-creator)",
       "Skill(takt)",
-      "Skill(codex)"
+      "Skill(codex)",
+      "Skill(ask-codex)"
     ],
     "deny": [
       "Bash(sudo *)",
@@ -68,13 +71,8 @@
       "Bash(helm *install*)",
       "Bash(helm *upgrade*)"
     ],
-    "ask": [
-      "Bash(git *config *)"
-    ],
-    "additionalDirectories": [
-      "~/Downloads/work",
-      "/tmp/claude"
-    ]
+    "ask": ["Bash(git *config *)"],
+    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
   },
   "hooks": {
     "PreToolUse": [
@@ -168,15 +166,13 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": [
-      "git *",
-      "gh *"
-    ],
+    "excludedCommands": ["git *", "gh *"],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
     }
   },
   "alwaysThinkingEnabled": true,
   "voiceEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "autoMemoryEnabled": false
 }

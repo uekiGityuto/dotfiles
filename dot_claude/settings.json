@@ -35,7 +35,20 @@
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
-      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:anthropic.com)",
+      "WebFetch(domain:openai.com)",
+      "WebFetch(domain:google.com)",
+      "WebFetch(domain:googleapis.com)",
+      "WebFetch(domain:context7.com)",
+      "WebFetch(domain:npmjs.org)",
+      "WebFetch(domain:react.dev)",
+      "WebFetch(domain:typescriptlang.org)",
+      "WebFetch(domain:vite.dev)",
+      "WebFetch(domain:tailwindcss.com)",
+      "WebFetch(domain:pnpm.io)",
+      "WebFetch(domain:deepwiki.com)",
+      "WebFetch(domain:zenn.dev)",
+      "WebFetch(domain:qiita.com)",
       "mcp__pencil",
       "Skill(browser-use)",
       "Skill(create-pr-with-screenshots)",
@@ -71,13 +84,8 @@
       "Bash(helm *install*)",
       "Bash(helm *upgrade*)"
     ],
-    "ask": [
-      "Bash(git *config *)"
-    ],
-    "additionalDirectories": [
-      "~/Downloads/work",
-      "/tmp/claude"
-    ]
+    "ask": ["Bash(git *config *)"],
+    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
   },
   "hooks": {
     "PreToolUse": [
@@ -172,10 +180,7 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": [
-      "git *",
-      "gh *"
-    ],
+    "excludedCommands": ["git *", "gh *"],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
     }

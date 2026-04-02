@@ -12,6 +12,9 @@
       "Edit(dot_claude/hooks/**)",
       "Edit(dot_claude/settings.json)",
       "Edit(dot_claude/statusline.sh)",
+      "Edit(dot_codex/AGENTS.md)",
+      "Edit(dot_codex/config.toml)",
+      "Edit(dot_codex/rules/**)",
       "Edit(dot_config/**)",
       "Edit(dot_takt/**)",
       "Edit(dot_zprofile)",
@@ -28,6 +31,9 @@
       "Write(dot_claude/hooks/**)",
       "Write(dot_claude/settings.json)",
       "Write(dot_claude/statusline.sh)",
+      "Write(dot_codex/AGENTS.md)",
+      "Write(dot_codex/config.toml)",
+      "Write(dot_codex/rules/**)",
       "Write(dot_config/**)",
       "Write(dot_takt/**)",
       "Write(dot_zprofile)",
@@ -37,7 +43,9 @@
       "Bash(brew install *)",
       "Bash(brew list *)",
       "Bash(brew bundle dump --force*)",
-      "Bash(make brew-dump)"
+      "Bash(make brew-dump)",
+      "Bash(rsync *)",
+      "Bash(ln -sf *)"
     ],
     "deny": [
       "Bash(git *add*)",

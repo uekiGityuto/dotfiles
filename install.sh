@@ -25,3 +25,4 @@ ln -sfn "$(pwd)/dot_config/mise" ~/.config/mise
 ln -sfn "$(pwd)/dot_config/yazi" ~/.config/yazi
 ln -sfn "$(pwd)/dot_takt" ~/.takt
 ln -sfn "$(pwd)/dot_codex" ~/.codex
+ln -sfn "$(pwd)/dot_agents" ~/.agents

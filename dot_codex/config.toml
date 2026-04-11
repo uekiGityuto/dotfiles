@@ -1,32 +1,35 @@
 personality = "pragmatic"
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"
 approvals_reviewer = "user"
 default_permissions = "default"
 
+[permissions.default.filesystem]
+":project_roots" = "write"
+
 [permissions.default.network]
 enabled = true
 mode = "limited"
-allowed_domains = [
-  "github.com",
-  "claude.ai",
-  "anthropic.com",
-  "openai.com",
-  "agentskills.io",
-  "google.com",
-  "googleapis.com",
-  "context7.com",
-  "npmjs.org",
-  "react.dev",
-  "typescriptlang.org",
-  "vite.dev",
-  "tailwindcss.com",
-  "pnpm.io",
-  "deepwiki.com",
-  "zenn.dev",
-  "qiita.com",
-]
+
+[permissions.default.network.domains]
+"github.com" = "allow"
+"claude.ai" = "allow"
+"anthropic.com" = "allow"
+"openai.com" = "allow"
+"agentskills.io" = "allow"
+"google.com" = "allow"
+"googleapis.com" = "allow"
+"context7.com" = "allow"
+"npmjs.org" = "allow"
+"react.dev" = "allow"
+"typescriptlang.org" = "allow"
+"vite.dev" = "allow"
+"tailwindcss.com" = "allow"
+"pnpm.io" = "allow"
+"deepwiki.com" = "allow"
+"zenn.dev" = "allow"
+"qiita.com" = "allow"
 
 [mcp_servers.context7]
 command = "npx"

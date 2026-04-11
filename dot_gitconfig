@@ -8,6 +8,7 @@
 	branch = auto
 [push]
 	default = simple
+	useForceIfIncludes = true
 [alias]
 	sw = switch
 	log1 = "log --oneline"

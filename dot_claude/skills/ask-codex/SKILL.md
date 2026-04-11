@@ -11,6 +11,7 @@ hooks:
     - matcher: Bash
       hooks:
         - type: command
+          if: "Bash(*codex *)"
           command: bash ~/.claude/skills/ask-codex/auto-approve-codex.sh
 ---
 

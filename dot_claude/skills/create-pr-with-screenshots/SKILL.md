@@ -5,6 +5,8 @@ description: >-
   トリガー例：「スクショ付きでPR作って」「画面のスクリーンショットを撮ってPR作成して」
   「SP/PCのスクショをPRに貼って」「localhost:8080/lp/meijinのスクショ撮ってPR作って」
   PRに画像を添付したい場合や、新規画面の実装後にビジュアル確認用のPRを作りたい場合に使用する。
+user-invocable: true
+disable-model-invocation: true
 argument-hint: "[url]"
 allowed-tools: Bash(gh *), Bash(lsof *), Bash(git *), Bash(sips *), Bash(pnpm dlx playwright *), Bash(npx playwright *), Bash(browser-use *), Bash(ls *), Bash(sleep *), Read, Glob, Write, Skill(browser-use *)
 ---

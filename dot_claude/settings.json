@@ -5,6 +5,7 @@
       "Edit(**/src/**)",
       "Write(**/src/**)",
       "Read(**/tmp/claude/**)",
+      "Read(**/tmp/claude-*/**)",
       "Edit(**/tmp/claude/**)",
       "Write(**/tmp/claude/**)",
       "Bash(* --version)",
@@ -33,6 +34,7 @@
       "Bash(gh search issues *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
+      "Bash(node *codex*.mjs *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:anthropic.com)",
@@ -51,12 +53,13 @@
       "WebFetch(domain:zenn.dev)",
       "WebFetch(domain:qiita.com)",
       "mcp__pencil",
+      "mcp__plugin_context7_context7__*",
       "Skill(browser-use)",
       "Skill(create-pr-with-screenshots)",
       "Skill(find-skills)",
       "Skill(skill-creator)",
       "Skill(takt)",
-      "Skill(codex)",
+      "Skill(codex:*)",
       "Skill(ask-codex)"
     ],
     "deny": [
@@ -126,6 +129,16 @@
             "command": "bash ~/.claude/hooks/auto-approve-tmp-write.sh"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/auto-approve-codex-plugin.sh",
+            "if": "Bash(node *codex*.mjs *)"
+          }
+        ]
       }
     ],
     "Notification": [
@@ -189,5 +202,6 @@
   "alwaysThinkingEnabled": true,
   "voiceEnabled": true,
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "high"
 }

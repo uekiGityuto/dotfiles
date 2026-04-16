@@ -37,6 +37,7 @@
       "Bash(node *codex*.mjs *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
+      "WebFetch(domain:claude.com)",
       "WebFetch(domain:anthropic.com)",
       "WebFetch(domain:openai.com)",
       "WebFetch(domain:agentskills.io)",
@@ -91,6 +92,7 @@
     "ask": ["Bash(git *config *)"],
     "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
   },
+  "model": "claude-opus-4-6[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -113,16 +115,7 @@
     ],
     "PermissionRequest": [
       {
-        "matcher": "Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/auto-approve-tmp-write.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "Edit",
+        "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
@@ -178,13 +171,20 @@
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "codex@openai-codex": true,
-    "context7@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "firebase@firebase": false
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
         "source": "github",
         "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "firebase": {
+      "source": {
+        "source": "github",
+        "repo": "firebase/firebase-tools"
       }
     }
   },
@@ -200,8 +200,8 @@
     }
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "voiceEnabled": true,
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high"
+  "skipDangerousModePermissionPrompt": true
 }

@@ -103,6 +103,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": "bash ~/.claude/hooks/block-multiline-bash.sh"
+          },
+          {
+            "type": "command",
             "command": "bash ~/.claude/hooks/block-cd.sh"
           }
         ]

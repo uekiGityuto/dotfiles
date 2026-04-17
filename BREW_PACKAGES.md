@@ -15,6 +15,7 @@
 | fzf        | ファジーファインダー（インタラクティブ検索） |
 | gh         | GitHub CLI                                   |
 | ghq        | リポジトリ管理（ローカルリポジトリの一元管理）|
+| idb-companion | iOS シミュレータ操作・自動化ツール            |
 | git-lfs    | Git Large File Storage（大容量ファイル管理） |
 | ripgrep    | 高速 grep（コード検索）※ yazi でも使用       |
 | jq         | JSON パーサー                                |
@@ -81,6 +82,7 @@
 | --------------------------- | --------------------------- |
 | android-studio              | Android 開発 IDE            |
 | claude-code                 | Claude Code CLI             |
+| codex                       | OpenAI Codex CLI            |
 | font-jetbrains-mono-nerd-font | Nerd Font（アイコン対応）   |
 | gcloud-cli                  | Google Cloud CLI              |
 | ghostty                     | 高速ターミナルエミュレータ  |

@@ -44,5 +44,11 @@ trust_level = "trusted"
 [projects."/Users/ueki/ghq/github.com/Finatext/orion-front"]
 trust_level = "trusted"
 
+[projects."/Users/ueki/ghq/github.com/uekiGityuto/vocabix"]
+trust_level = "trusted"
+
+[projects."/Users/ueki/ghq/github.com/uekiGityuto/personal-scripts"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"

@@ -42,4 +42,4 @@ uv-install:
 
 ## uv-tools.txtを現在の状態で更新
 uv-dump:
-	uv tool list --short | cut -d' ' -f1 > uv-tools.txt
+	uv tool list | grep -v '^-' | cut -d' ' -f1 > uv-tools.txt

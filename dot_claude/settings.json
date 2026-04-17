@@ -2,6 +2,7 @@
   "permissions": {
     "allow": [
       "Read(**)",
+      "Read(~/.local/share/mise/installs/npm-takt/**)",
       "Edit(**/src/**)",
       "Write(**/src/**)",
       "Read(**/tmp/claude/**)",
@@ -27,6 +28,7 @@
       "Bash(git *diff*)",
       "Bash(git *log*)",
       "Bash(git *lf-files*)",
+      "Bash(git *rev-parse*)",
       "Bash(gh pr list *)",
       "Bash(gh pr diff *)",
       "Bash(gh pr view *)",
@@ -61,7 +63,8 @@
       "Skill(skill-creator)",
       "Skill(takt)",
       "Skill(codex:*)",
-      "Skill(ask-codex)"
+      "Skill(ask-codex)",
+      "Skill(takt-builder)"
     ],
     "deny": [
       "Bash(sudo *)",
@@ -98,10 +101,6 @@
       {
         "matcher": "Bash",
         "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/block-chained-commands.sh"
-          },
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/block-multiline-bash.sh"

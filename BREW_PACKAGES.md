@@ -19,6 +19,7 @@
 | git-lfs    | Git Large File Storage（大容量ファイル管理） |
 | ripgrep    | 高速 grep（コード検索）※ yazi でも使用       |
 | jq         | JSON パーサー                                |
+| just       | コマンドランナー（Makefile 代替）            |
 | yq         | YAML パーサー                                |
 | tree       | ディレクトリ構造表示                         |
 | wget       | ファイルダウンロード                         |

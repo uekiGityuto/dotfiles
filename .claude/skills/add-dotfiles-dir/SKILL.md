@@ -1,10 +1,10 @@
 ---
-name: dotfiles-add-dir
+name: add-dotfiles-dir
 description: ホームディレクトリのドットディレクトリをディレクトリごとシンボリックリンク方式でdotfiles管理に追加する。「~/.fooをディレクトリごと管理したい」「~/.fooをdotfilesに追加して（ディレクトリごと）」等と言われたときに使う。個別ファイルのみの管理には使わない。
 argument-hint: "[ディレクトリパス（例: ~/.agents）]"
 ---
 
-# dotfiles-add-dir
+# add-dotfiles-dir
 
 ホームディレクトリのドットディレクトリをdotfiles管理（ディレクトリごとシンボリックリンク方式）に追加する。
 

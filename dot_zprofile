@@ -30,5 +30,5 @@ alias dc='docker compose'
 alias p='python'
 alias ll='ls -alF'
 alias tf='terraform'
-alias zelda='afplay ~/ghq/github.com/uekiGityuto/dotfiles/assets/sounds/zelda.mp3'
 alias pathcopy='pwd | pbcopy'
+alias psj='just -f ~/ghq/github.com/uekiGityuto/personal-scripts/justfile' # psj --list でスクリプトの一覧が見れる

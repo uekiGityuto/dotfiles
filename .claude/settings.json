@@ -3,6 +3,7 @@
     "allow": [
       "Read(**)",
       "Edit(.vscode/settings.json)",
+      "Edit(.claude/skills/**)",
       "Edit(BREW_PACKAGES.md)",
       "Edit(CLAUDE.md)",
       "Edit(Makefile)",
@@ -22,6 +23,7 @@
       "Edit(init.sh)",
       "Edit(install.sh)",
       "Write(.vscode/settings.json)",
+      "Write(.claude/skills/**)",
       "Write(BREW_PACKAGES.md)",
       "Write(CLAUDE.md)",
       "Write(Makefile)",
@@ -45,7 +47,8 @@
       "Bash(brew bundle dump --force*)",
       "Bash(make brew-dump)",
       "Bash(rsync *)",
-      "Bash(ln *)"
+      "Bash(ln *)",
+      "Bash(mkdir *)"
     ],
     "deny": [
       "Bash(git *add*)",

@@ -21,4 +21,4 @@ macOS用dotfiles管理リポジトリ。コマンドは `Makefile` を参照。
 ### dotfileの更新手順
 
 1. 対象のdotfileを直接編集してコミット
-2. Homebrewパッケージの追加は `/brew-add`、外部での変更反映は `/brew-sync` を使う
+2. Homebrewパッケージの追加は `/add-brew`、外部での変更反映は `/sync-brew` を使う

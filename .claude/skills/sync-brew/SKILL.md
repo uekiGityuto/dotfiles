@@ -1,9 +1,9 @@
 ---
-name: brew-sync
-description: BrewfileとBREW_PACKAGES.mdを現在のHomebrew状態に同期する。「brew sync」「Brewfile更新」「Brewfile最新化」「パッケージ反映」等と言われたとき、または外部でのHomebrew変更をリポジトリに反映したいときに使う。/brew-addからも呼び出される。
+name: sync-brew
+description: BrewfileとBREW_PACKAGES.mdを現在のHomebrew状態に同期する。「brew sync」「Brewfile更新」「Brewfile最新化」「パッケージ反映」等と言われたとき、または外部でのHomebrew変更をリポジトリに反映したいときに使う。/add-brewからも呼び出される。
 ---
 
-# brew-sync
+# sync-brew
 
 BrewfileとBREW_PACKAGES.mdを現在のHomebrew状態に同期する。
 

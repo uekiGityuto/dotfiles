@@ -40,7 +40,7 @@ ln -s ../../../../../../.agents/skills/<skill-name> dot_claude/skills/<skill-nam
 
 - スキルは**日本語で作成する**（参照元が英語の場合は日本語に訳す）
 - コード例やフィールド名等の技術的な識別子はそのまま残す
-- 既存スキル（brew-add, dotfiles-add-dir等）のフォーマットを参考にする
+- 既存スキル（add-brew, add-dotfiles-dir等）のフォーマットを参考にする
 
 #### Frontmatterの使い分け
 

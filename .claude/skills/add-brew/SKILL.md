@@ -1,9 +1,9 @@
 ---
-name: brew-add
+name: add-brew
 description: Homebrewパッケージをインストールし、BrewfileとBREW_PACKAGES.mdを更新する。「brew add」「brew install」「Homebrewで追加して」「○○を入れたい」等と言われたとき、または新しいHomebrew formulaやcaskをdotfilesに追加したいときに使う。
 ---
 
-# brew-add
+# add-brew
 
 Homebrewパッケージをインストールし、ドキュメントを同期する。
 
@@ -21,8 +21,8 @@ $ARGUMENTS = パッケージ指定（例: `bat`、`--cask raycast`）
 
 ### 3. 同期
 
-用途情報を引数に渡して `/brew-sync` を呼び出す:
+用途情報を引数に渡して `/sync-brew` を呼び出す:
 
 ```
-/brew-sync <パッケージ名>: <用途>
+/sync-brew <パッケージ名>: <用途>
 ```

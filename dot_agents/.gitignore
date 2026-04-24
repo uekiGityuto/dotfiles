@@ -5,3 +5,5 @@
 skills/**
 !skills/agent-memory/
 !skills/agent-memory/**
+!skills/empirical-prompt-tuning/
+!skills/empirical-prompt-tuning/**

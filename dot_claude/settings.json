@@ -3,6 +3,7 @@
     "allow": [
       "Read(**)",
       "Read(~/.local/share/mise/installs/npm-takt/**)",
+      "Read(~/.claude/skills/takt-builder/references/STYLE_GUIDE.md)",
       "Edit(**/src/**)",
       "Write(**/src/**)",
       "Read(**/tmp/claude/**)",
@@ -29,6 +30,7 @@
       "Bash(git *log*)",
       "Bash(git *lf-files*)",
       "Bash(git *rev-parse*)",
+      "Bash(git *show*)",
       "Bash(gh pr list *)",
       "Bash(gh pr diff *)",
       "Bash(gh pr view *)",

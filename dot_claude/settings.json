@@ -23,6 +23,7 @@
       "Bash(grep *)",
       "Bash(find *)",
       "Bash(sips *)",
+      "Bash(mkdir *)",
       "Bash(gemini *)",
       "Bash(codex *)",
       "Bash(git *status*)",

@@ -1,5 +1,5 @@
 ---
-name: create-skill
+name: add-skill
 description: "新しいスキルを作成する。「スキル作って」「スキル追加して」「このスキルを入れて」等と言われたときに使う。"
 argument-hint: "[スキルの内容や参照元URL]"
 ---

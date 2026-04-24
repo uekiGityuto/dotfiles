@@ -48,7 +48,11 @@
       "Bash(make brew-dump)",
       "Bash(rsync *)",
       "Bash(ln *)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Skill(add-brew)",
+      "Skill(add-dotfiles-dir)",
+      "Skill(add-skill)",
+      "Skill(sync-brew)"
     ],
     "deny": [
       "Bash(git *add*)",

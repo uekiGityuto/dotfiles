@@ -50,5 +50,14 @@ trust_level = "trusted"
 [projects."/Users/ueki/ghq/github.com/uekiGityuto/personal-scripts"]
 trust_level = "trusted"
 
+[projects."/Users/ueki/ghq/github.com/uekiGityuto/todo-list"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.1-codex-max" = "gpt-5.4"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-04-20T04:23:14Z"
+source_type = "local"
+source = "/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/.tmp/bundled-marketplaces/openai-bundled"

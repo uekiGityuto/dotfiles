@@ -95,10 +95,14 @@
       "Bash(helm *install*)",
       "Bash(helm *upgrade*)"
     ],
-    "ask": ["Bash(git *config *)"],
-    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"]
+    "ask": [
+      "Bash(git *config *)"
+    ],
+    "additionalDirectories": [
+      "~/Downloads/work",
+      "/tmp/claude"
+    ]
   },
-  "model": "claude-opus-4-6[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -196,14 +200,17 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": ["git *", "gh *"],
+    "excludedCommands": [
+      "git *",
+      "gh *"
+    ],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
     }
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "voiceEnabled": true,
   "autoMemoryEnabled": false,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "voiceEnabled": true
 }

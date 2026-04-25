@@ -5,6 +5,8 @@ sandbox_mode = "workspace-write"
 approvals_reviewer = "user"
 default_permissions = "default"
 
+notify = ["/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/plugins/cache/openai-bundled/computer-use/1.0.758/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
 [permissions.default.filesystem]
 ":project_roots" = "write"
 
@@ -53,11 +55,23 @@ trust_level = "trusted"
 [projects."/Users/ueki/ghq/github.com/uekiGityuto/todo-list"]
 trust_level = "trusted"
 
+[projects."/Users/ueki/ghq/github.com/Finatext/liqueur-server"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.1-codex-max" = "gpt-5.4"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-04-20T04:23:14Z"
+last_updated = "2026-04-25T16:08:23Z"
 source_type = "local"
 source = "/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."github@openai-curated"]
+enabled = true

@@ -1,3 +1,6 @@
+# interactive / non-interactive の両方で同じ mise PATH を使う。
+[[ -f ~/.zsh/mise-path.zsh ]] && source ~/.zsh/mise-path.zsh
+
 # インタラクティブシェルの場合のみ実行
 if [[ $- == *i* ]]; then
 

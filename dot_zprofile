@@ -1,8 +1,9 @@
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Mise - Version Manager (Node.js, Ruby, Flutter, Java, Python, Go, etc.)
-eval "$(mise activate zsh)"
+# Mise の PATH 設定は ~/.zsh/mise-path.zsh に集約する。
+# Codex App でも効くように、shell hook ではなく shims を優先する。
+[[ -f ~/.zsh/mise-path.zsh ]] && source ~/.zsh/mise-path.zsh
 
 eval "$(zoxide init zsh --cmd cd)"
 
@@ -32,3 +33,4 @@ alias ll='ls -alF'
 alias tf='terraform'
 alias pathcopy='pwd | pbcopy'
 alias psj='just -f ~/ghq/github.com/uekiGityuto/personal-scripts/justfile' # psj --list でスクリプトの一覧が見れる
+alias takt='caffeinate -i takt'

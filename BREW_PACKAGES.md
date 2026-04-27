@@ -60,6 +60,8 @@
 | shellcheck | シェルスクリプト Linter |
 | hadolint   | Dockerfile Linter       |
 | yamllint   | YAML Linter             |
+| semgrep    | 静的解析・セキュリティスキャン |
+| gitleaks   | シークレット検出（API キー・パスワード等の漏洩スキャン） |
 
 ## データベース
 
@@ -83,7 +85,7 @@
 | --------------------------- | --------------------------- |
 | android-studio              | Android 開発 IDE            |
 | claude-code                 | Claude Code CLI             |
-| codex                       | OpenAI Codex CLI            |
+| docker/tap/sbx              | Docker Sandbox（隣接サンドボックス） |
 | font-jetbrains-mono-nerd-font | Nerd Font（アイコン対応）   |
 | gcloud-cli                  | Google Cloud CLI              |
 | ghostty                     | 高速ターミナルエミュレータ  |

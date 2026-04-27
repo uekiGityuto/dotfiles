@@ -40,6 +40,8 @@
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
       "Bash(node *codex*.mjs *)",
+      "Bash(pnpm *test*)",
+      "Bash(pnpm *lint*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:claude.com)",
@@ -101,7 +103,8 @@
     "additionalDirectories": [
       "~/Downloads/work",
       "/tmp/claude"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "PreToolUse": [
@@ -212,5 +215,6 @@
   "effortLevel": "high",
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "skipAutoPermissionPrompt": true
 }

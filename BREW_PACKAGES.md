@@ -85,6 +85,7 @@
 | --------------------------- | --------------------------- |
 | android-studio              | Android 開発 IDE            |
 | claude-code                 | Claude Code CLI             |
+| codex                       | OpenAI Codex CLI            |
 | docker/tap/sbx              | Docker Sandbox（隣接サンドボックス） |
 | font-jetbrains-mono-nerd-font | Nerd Font（アイコン対応）   |
 | gcloud-cli                  | Google Cloud CLI              |

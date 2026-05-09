@@ -23,20 +23,8 @@
       "Bash(grep *)",
       "Bash(find *)",
       "Bash(sips *)",
-      "Bash(mkdir *)",
       "Bash(gemini *)",
       "Bash(codex *)",
-      "Bash(git *status*)",
-      "Bash(git *diff*)",
-      "Bash(git *log*)",
-      "Bash(git *lf-files*)",
-      "Bash(git *rev-parse*)",
-      "Bash(git *show*)",
-      "Bash(gh pr list *)",
-      "Bash(gh pr diff *)",
-      "Bash(gh pr view *)",
-      "Bash(gh issue view *)",
-      "Bash(gh search issues *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
       "Bash(node *codex*.mjs *)",
@@ -62,13 +50,12 @@
       "WebFetch(domain:qiita.com)",
       "mcp__pencil",
       "mcp__plugin_context7_context7__*",
+      "Skill(my-*)",
       "Skill(browser-use)",
-      "Skill(my-create-pr-with-screenshots)",
       "Skill(find-skills)",
       "Skill(skill-creator)",
-      "Skill(codex:*)",
-      "Skill(my-codex)",
-      "Skill(takt-builder)"
+      "Skill(takt-builder)",
+      "Skill(codex:*)"
     ],
     "deny": [
       "Bash(sudo *)",
@@ -138,6 +125,16 @@
             "type": "command",
             "command": "bash ~/.claude/hooks/auto-approve-codex-plugin.sh",
             "if": "Bash(node *codex*.mjs *)"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/auto-approve-git-gh.sh",
+            "if": "Bash(git *)"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/auto-approve-git-gh.sh",
+            "if": "Bash(gh *)"
           }
         ]
       }

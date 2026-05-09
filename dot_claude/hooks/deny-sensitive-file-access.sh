@@ -1,9 +1,9 @@
 #!/bin/bash
-# Bash コマンドに機密ファイルパスが含まれている場合に deny する hook
+# Bash コマンドに機密ファイルパスが含まれている場合に block する hook
+# PreToolUse に登録すること（PermissionRequest だと allow list / auto-mode で auto-approve されたコマンドに発火しない）
 # Read ツール側の deny だけでは Bash 経由のアクセス（cat/grep/head/tail/find/less/more 等）を防げないための補完
 
-INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+COMMAND=$(jq -r '.tool_input.command // empty')
 
 # 機密パスパターン（コマンド文字列内で検出する）
 SENSITIVE_PATTERNS=(
@@ -39,10 +39,8 @@ SENSITIVE_PATTERNS=(
 
 for pattern in "${SENSITIVE_PATTERNS[@]}"; do
   if echo "$COMMAND" | grep -qE "$pattern"; then
-    cat <<JSON
-{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"deny","reason":"機密ファイル/ディレクトリ ($pattern) へのアクセスは禁止されています。Read ツール側の deny と同様の保護です。"}}}
-JSON
-    exit 0
+    echo "機密ファイル/ディレクトリ ($pattern) へのアクセスは禁止されています。Read ツール側の deny と同様の保護です。" >&2
+    exit 2
   fi
 done
 

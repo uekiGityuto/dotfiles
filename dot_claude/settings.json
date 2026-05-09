@@ -10,24 +10,12 @@
       "Read(**/tmp/claude-*/**)",
       "Edit(**/tmp/claude/**)",
       "Write(**/tmp/claude/**)",
-      "Bash(ls *)",
-      "Bash(cat *)",
-      "Bash(mkdir *)",
-      "Bash(pwd)",
-      "Bash(which *)",
-      "Bash(wc *)",
-      "Bash(head *)",
-      "Bash(tail *)",
-      "Bash(grep *)",
-      "Bash(find *)",
       "Bash(sips *)",
       "Bash(gemini *)",
       "Bash(codex *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
       "Bash(node ~/.claude/plugins/cache/openai-codex/**/*.mjs *)",
-      "Bash(pnpm *test*)",
-      "Bash(pnpm *lint*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:claude.com)",
@@ -56,30 +44,11 @@
       "Skill(codex:*)"
     ],
     "deny": [
-      "Bash(sudo *)",
       "Read(id_rsa)",
       "Read(id_ed25519)",
       "Read(*.pem)",
       "Read(**/credentials/**)",
-      "Read(~/credentials/**)",
-      "Bash(npm *publish*)",
-      "Bash(yarn *publish*)",
-      "Bash(pnpm *publish*)",
-      "Bash(cargo *publish*)",
-      "Bash(gem *push*)",
-      "Bash(twine *upload*)",
-      "Bash(pip *publish*)",
-      "Bash(terraform *apply*)",
-      "Bash(kubectl *apply*)",
-      "Bash(docker *push*)",
-      "Bash(aws *deploy*)",
-      "Bash(gcloud *deploy*)",
-      "Bash(firebase *deploy*)",
-      "Bash(vercel *deploy*)",
-      "Bash(netlify *deploy*)",
-      "Bash(flyctl *deploy*)",
-      "Bash(helm *install*)",
-      "Bash(helm *upgrade*)"
+      "Read(~/credentials/**)"
     ],
     "ask": [
       "Bash(git *config *)"
@@ -102,6 +71,14 @@
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/block-cd.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/deny-sensitive-file-access.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/deny-dangerous-commands.sh"
           }
         ]
       }
@@ -119,10 +96,6 @@
       {
         "matcher": "Bash",
         "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/hooks/deny-sensitive-file-access.sh"
-          },
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/auto-approve-codex-plugin.sh",

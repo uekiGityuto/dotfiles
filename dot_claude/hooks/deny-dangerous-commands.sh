@@ -2,8 +2,34 @@
 # publish/deploy/push 系の危険なコマンドを block する hook
 # tool ごとに global option（値をとるもの含む）をスキップして subcommand を判定する
 # && || ; | で chain されたコマンドも各セグメントを個別にチェックする
+#
+# === 重要：これは「うっかり防止」のための補助レイヤーであり、完全な防御ではない ===
+#
+# string matching ベースで shell semantics を完全には掴めないため、以下の bypass 経路が存在する:
+#   - alias 経由: `alias np='npm publish'; np`
+#   - function 経由: `function p() { npm publish; }; p`
+#   - source/eval: `source /tmp/evil.sh`, `eval "npm publish"`
+#   - here-doc / process substitution: `bash <<< "npm publish"`, `<(npm publish)`
+#   - 絶対パス: `/usr/local/bin/npm publish`
+#   - 動的解決: `$(type -P npm) publish`
+#   - シェル機能のあらゆる組み合わせ
+#
+# 真のセキュリティが必要な場合は以下の併用を検討:
+#   - OS-level sandbox (macOS sandbox-exec, Linux seccomp/firejail 等)
+#   - Claude Code の sandbox 機能（settings.json の sandbox.enabled）
+#   - 高リスクプロジェクトでは defaultMode を変更し prompt を明示要求
+#
+# このフックの目的: 「Claude が単純な思い違いで危険コマンドを実行する事故」の防止
 
 FULL_COMMAND=$(jq -r '.tool_input.command // empty')
+
+# トークン周辺の quote を除去
+strip_quotes() {
+  local s="$1"
+  s="${s#\"}"; s="${s%\"}"
+  s="${s#\'}"; s="${s%\'}"
+  echo "$s"
+}
 
 # tool の global option をスキップして 1 番目の非オプショントークンを取得
 # $1: コマンド全体, $2: tool 名, $3: 値をとるオプションのスペース区切りリスト
@@ -17,16 +43,17 @@ strip_options() {
     local first
     first=$(echo "$cmd" | awk '{print $1}')
     [[ -z "$first" ]] && break
-    case "$first" in
+    # quote 除去後で判定
+    local first_unq
+    first_unq=$(strip_quotes "$first")
+    case "$first_unq" in
       --*=*|-*=*)
-        # --opt=val 形式: 1 トークン消費
         cmd=$(echo "$cmd" | awk '{for(i=2;i<=NF;i++) printf "%s%s", $i, (i<NF?" ":""); print ""}')
         ;;
       -*)
-        # 値をとるオプションかチェック
         local is_two=0
         for opt in $two_token_opts; do
-          [[ "$first" == "$opt" ]] && is_two=1 && break
+          [[ "$first_unq" == "$opt" ]] && is_two=1 && break
         done
         if [[ $is_two -eq 1 ]]; then
           cmd=$(echo "$cmd" | awk '{for(i=3;i<=NF;i++) printf "%s%s", $i, (i<NF?" ":""); print ""}')
@@ -39,7 +66,8 @@ strip_options() {
         ;;
     esac
   done
-  echo "$cmd" | awk '{print $1}'
+  # 結果も quote 除去
+  strip_quotes "$(echo "$cmd" | awk '{print $1}')"
 }
 
 # 同じく、最初の N トークンに target が含まれるか（multi-level subcommand 用）
@@ -79,8 +107,8 @@ contains_subcmd() {
 }
 
 # 各 tool の「値をとるオプション」リスト
-NPM_TWO="-w --workspace --prefix -C --registry --tag --otp --include-workspace-root --workspaces-update"
-PNPM_TWO="-F --filter --reporter --workspace-concurrency --report-summary --registry --config.script-shell"
+NPM_TWO="-w --workspace --prefix -C --registry --tag --otp --include-workspace-root --workspaces-update --userconfig --globalconfig --cache --logfile --loglevel --access --auth-type"
+PNPM_TWO="-F --filter --reporter --workspace-concurrency --report-summary --registry --config.script-shell --userconfig --globalconfig --cache --network-concurrency --child-concurrency"
 YARN_TWO=""
 CARGO_TWO="--color --target --target-dir --manifest-path"
 PIP_TWO="--proxy --cert --client-cert --cache-dir --log -i --index-url"
@@ -107,8 +135,69 @@ check_segment() {
   local COMMAND="$1"
   COMMAND=$(echo "$COMMAND" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
   [[ -z "$COMMAND" ]] && return
+
+  # quote/backslash 連結による bypass を防ぐため、検査前に全 quote と backslash を除去
+  # 例: n'p'm publish → npm publish, npm pub"lish" → npm publish
+  # bash 実行時にこれらは解釈されて消えるので、検査側でも同様に正規化
+  COMMAND="${COMMAND//\'/}"
+  COMMAND="${COMMAND//\"/}"
+  COMMAND="${COMMAND//\\/}"
+
+  # subshell / command substitution / backtick の検出
+  # これらを使われると先頭 token 判定を bypass される
+  case "$COMMAND" in
+    \(*|*\$\(*|*\`*)
+      deny "subshell / command substitution / backtick は許可されていません（権限チェック bypass のリスク）。コマンドを直接書いてください。"
+      ;;
+  esac
+
+  # 先頭の環境変数代入（VAR=value VAR2=value）を剥がす
+  # 例: "CMD=publish npm \$CMD" → 代入を剥がすと "npm \$CMD"
+  # 代入だけなら問題ない（NODE_ENV=production npm run build など）が、
+  # 代入 + \$VAR 展開の組み合わせは bypass リスクなので block
+  local has_assignment=0
+  while [[ "$COMMAND" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]]; do
+    has_assignment=1
+    COMMAND=$(echo "$COMMAND" | awk '{for(i=2;i<=NF;i++) printf "%s%s", $i, (i<NF?" ":""); print ""}')
+  done
+  if [[ $has_assignment -eq 1 && "$COMMAND" =~ \$[A-Za-z_{] ]]; then
+    deny "環境変数代入と \$VAR 展開の組み合わせは許可されていません（変数経由で危険サブコマンドを bypass するリスク）。"
+  fi
+
   local FIRST
-  FIRST=$(echo "$COMMAND" | awk '{print $1}')
+  FIRST=$(strip_quotes "$(echo "$COMMAND" | awk '{print $1}')")
+
+  # コマンド wrapper（env, command, exec, nice, time 等）の検出
+  # これらでラップすると FIRST がラッパーになり、危険コマンド判定を bypass される
+  case "$FIRST" in
+    env|command|exec|nohup|nice|ionice|time|timeout|xargs|stdbuf|unbuffer)
+      deny "コマンド wrapper ($FIRST) は許可されていません（権限チェック bypass のリスク）。対象コマンドを直接実行してください。"
+      ;;
+    bash|sh|zsh|dash|ksh|fish)
+      # シェル -c によるコマンド実行は bypass の温床
+      case "$COMMAND" in
+        *\ -c\ *|*\ --command\ *)
+          deny "shell -c によるコマンド実行は許可されていません（権限チェック bypass のリスク）。"
+          ;;
+      esac
+      ;;
+  esac
+
+  # 危険ツールのサブコマンド位置に \$VAR があれば bypass リスク
+  # 例: npm \$CMD（CMD が事前に publish に設定されている可能性）
+  case "$FIRST" in
+    npm|yarn|pnpm|cargo|pip|gem|twine|terraform|kubectl|docker|aws|gcloud|firebase|vercel|netlify|flyctl|helm)
+      local rest
+      rest=$(echo "$COMMAND" | awk '{for(i=2;i<=NF;i++) printf "%s%s", $i, (i<NF?" ":""); print ""}')
+      # サブコマンド位置（最初の非オプショントークン）に $ があれば deny
+      local sub_pos
+      sub_pos=$(echo "$rest" | awk '{for(i=1;i<=NF;i++){if($i!~/^-/){print $i; exit}}}')
+      sub_pos=$(strip_quotes "$sub_pos")
+      if [[ "$sub_pos" =~ ^\$ ]]; then
+        deny "$FIRST のサブコマンド位置に変数展開が使われています（事前代入経由で危険サブコマンドを呼ぶリスク）。"
+      fi
+      ;;
+  esac
 
   case "$FIRST" in
     npm)

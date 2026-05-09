@@ -67,7 +67,8 @@
           },
           {
             "type": "command",
-            "command": "bash ~/.claude/hooks/block-cd.sh"
+            "command": "bash ~/.claude/hooks/block-cd.sh",
+            "if": "Bash(*cd*)"
           },
           {
             "type": "command",

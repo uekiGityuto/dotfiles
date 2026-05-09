@@ -50,18 +50,23 @@ if [[ "$COMMAND" =~ ^git[[:space:]] ]] || [[ "$COMMAND" == "git" ]]; then
 elif [[ "$COMMAND" =~ ^gh[[:space:]] ]] || [[ "$COMMAND" == "gh" ]]; then
   SUB=$(get_gh_sub "$COMMAND")
   case "$SUB" in
-    # 読み取り系のサブコマンド
-    "pr list"|"pr view"|"pr diff"|"pr checks"|"pr status"|"pr checkout"|\
+    # 純粋な読み取り系のサブコマンドのみ
+    # 除外したもの:
+    #   - api *: -X DELETE/POST 等で破壊的 API 実行可能
+    #   - auth token: 秘密値出力
+    #   - pr checkout: ローカル作業状態を変える
+    #   - repo clone, label clone: リモート/ローカル状態に影響
+    "pr list"|"pr view"|"pr diff"|"pr checks"|"pr status"|\
     "issue view"|"issue list"|"issue status"|\
-    "repo view"|"repo list"|"repo clone"|\
-    "search "*|"api "*|\
+    "repo view"|"repo list"|\
+    "search "*|\
     "run list"|"run view"|"run watch"|\
     "release list"|"release view"|\
     "workflow list"|"workflow view"|\
     "browse"|"browse "*|\
-    "auth status"|"auth token"|\
+    "auth status"|\
     "config get"|"config list"|\
-    "label list"|"label clone"|\
+    "label list"|\
     "gist view"|"gist list")
       echo '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"allow"}}}'
       ;;

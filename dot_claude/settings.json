@@ -10,8 +10,6 @@
       "Read(**/tmp/claude-*/**)",
       "Edit(**/tmp/claude/**)",
       "Write(**/tmp/claude/**)",
-      "Bash(* --version)",
-      "Bash(* --help)",
       "Bash(ls *)",
       "Bash(cat *)",
       "Bash(mkdir *)",
@@ -27,7 +25,7 @@
       "Bash(codex *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/init_skill.py *)",
       "Bash(python3 ~/.agents/skills/skill-creator/scripts/quick_validate.py *)",
-      "Bash(node *codex*.mjs *)",
+      "Bash(node ~/.claude/plugins/cache/openai-codex/**/*.mjs *)",
       "Bash(pnpm *test*)",
       "Bash(pnpm *lint*)",
       "WebFetch(domain:github.com)",
@@ -123,8 +121,12 @@
         "hooks": [
           {
             "type": "command",
+            "command": "bash ~/.claude/hooks/deny-sensitive-file-access.sh"
+          },
+          {
+            "type": "command",
             "command": "bash ~/.claude/hooks/auto-approve-codex-plugin.sh",
-            "if": "Bash(node *codex*.mjs *)"
+            "if": "Bash(node ~/.claude/plugins/cache/openai-codex/**/*.mjs *)"
           },
           {
             "type": "command",

@@ -3,5 +3,3 @@ language: ja
 
 logging:
   level: info
-  trace: true
-  debug: true

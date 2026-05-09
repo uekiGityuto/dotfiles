@@ -1,8 +1,9 @@
 #!/bin/bash
 # publish/deploy/push 系の危険なコマンドを block する hook
 # tool ごとに global option（値をとるもの含む）をスキップして subcommand を判定する
+# && || ; | で chain されたコマンドも各セグメントを個別にチェックする
 
-COMMAND=$(jq -r '.tool_input.command // empty')
+FULL_COMMAND=$(jq -r '.tool_input.command // empty')
 
 # tool の global option をスキップして 1 番目の非オプショントークンを取得
 # $1: コマンド全体, $2: tool 名, $3: 値をとるオプションのスペース区切りリスト
@@ -96,81 +97,95 @@ NETLIFY_TWO="--auth --site -s --filter"
 FLYCTL_TWO="--access-token -t --app -a --config -c --verbose"
 HELM_TWO="--kubeconfig --kube-context --namespace -n --kube-as-user --kube-as-group --kube-token --kube-apiserver --kube-ca-file --registry-config --repository-config --repository-cache"
 
-FIRST=$(echo "$COMMAND" | awk '{print $1}')
-
 deny() {
   echo "$1" >&2
   exit 2
 }
 
-case "$FIRST" in
-  npm)
-    SUB=$(strip_options "$COMMAND" "npm" "$NPM_TWO")
-    [[ "$SUB" == "publish" ]] && deny "npm publish は許可されていません（パッケージレジストリへの公開）。"
-    ;;
-  yarn)
-    SUB=$(strip_options "$COMMAND" "yarn" "$YARN_TWO")
-    [[ "$SUB" == "publish" ]] && deny "yarn publish は許可されていません（パッケージレジストリへの公開）。"
-    ;;
-  pnpm)
-    SUB=$(strip_options "$COMMAND" "pnpm" "$PNPM_TWO")
-    [[ "$SUB" == "publish" ]] && deny "pnpm publish は許可されていません（パッケージレジストリへの公開）。"
-    ;;
-  cargo)
-    SUB=$(strip_options "$COMMAND" "cargo" "$CARGO_TWO")
-    [[ "$SUB" == "publish" ]] && deny "cargo publish は許可されていません（crates.io への公開）。"
-    ;;
-  pip)
-    SUB=$(strip_options "$COMMAND" "pip" "$PIP_TWO")
-    [[ "$SUB" == "publish" ]] && deny "pip publish は許可されていません。"
-    ;;
-  gem)
-    SUB=$(strip_options "$COMMAND" "gem" "$GEM_TWO")
-    [[ "$SUB" == "push" ]] && deny "gem push は許可されていません（rubygems.org への公開）。"
-    ;;
-  twine)
-    SUB=$(strip_options "$COMMAND" "twine" "$TWINE_TWO")
-    [[ "$SUB" == "upload" ]] && deny "twine upload は許可されていません（PyPI への公開）。"
-    ;;
-  terraform)
-    SUB=$(strip_options "$COMMAND" "terraform" "$TERRAFORM_TWO")
-    [[ "$SUB" == "apply" ]] && deny "terraform apply は許可されていません（インフラ適用）。"
-    ;;
-  kubectl)
-    SUB=$(strip_options "$COMMAND" "kubectl" "$KUBECTL_TWO")
-    [[ "$SUB" == "apply" ]] && deny "kubectl apply は許可されていません（K8s リソース適用）。"
-    ;;
-  docker)
-    SUB=$(strip_options "$COMMAND" "docker" "$DOCKER_TWO")
-    [[ "$SUB" == "push" ]] && deny "docker push は許可されていません（イメージレジストリへの公開）。"
-    ;;
-  aws)
-    contains_subcmd "$COMMAND" "aws" "$AWS_TWO" "deploy" && deny "aws ... deploy は許可されていません（デプロイ系コマンド）。"
-    ;;
-  gcloud)
-    contains_subcmd "$COMMAND" "gcloud" "$GCLOUD_TWO" "deploy" && deny "gcloud ... deploy は許可されていません（デプロイ系コマンド）。"
-    ;;
-  firebase)
-    contains_subcmd "$COMMAND" "firebase" "$FIREBASE_TWO" "deploy" && deny "firebase deploy は許可されていません。"
-    ;;
-  vercel)
-    contains_subcmd "$COMMAND" "vercel" "$VERCEL_TWO" "deploy" && deny "vercel deploy は許可されていません。"
-    ;;
-  netlify)
-    contains_subcmd "$COMMAND" "netlify" "$NETLIFY_TWO" "deploy" && deny "netlify deploy は許可されていません。"
-    ;;
-  flyctl)
-    contains_subcmd "$COMMAND" "flyctl" "$FLYCTL_TWO" "deploy" && deny "flyctl deploy は許可されていません。"
-    ;;
-  helm)
-    SUB=$(strip_options "$COMMAND" "helm" "$HELM_TWO")
-    if [[ "$SUB" == "install" || "$SUB" == "upgrade" ]]; then
-      deny "helm $SUB は許可されていません（K8s リソースの変更）。"
-    fi
-    ;;
-  sudo)
-    deny "sudo は許可されていません。"
-    ;;
-esac
+# 1 つのコマンドセグメントを検査する
+check_segment() {
+  local COMMAND="$1"
+  COMMAND=$(echo "$COMMAND" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+  [[ -z "$COMMAND" ]] && return
+  local FIRST
+  FIRST=$(echo "$COMMAND" | awk '{print $1}')
+
+  case "$FIRST" in
+    npm)
+      SUB=$(strip_options "$COMMAND" "npm" "$NPM_TWO")
+      [[ "$SUB" == "publish" ]] && deny "npm publish は許可されていません（パッケージレジストリへの公開）。"
+      ;;
+    yarn)
+      SUB=$(strip_options "$COMMAND" "yarn" "$YARN_TWO")
+      [[ "$SUB" == "publish" ]] && deny "yarn publish は許可されていません（パッケージレジストリへの公開）。"
+      ;;
+    pnpm)
+      SUB=$(strip_options "$COMMAND" "pnpm" "$PNPM_TWO")
+      [[ "$SUB" == "publish" ]] && deny "pnpm publish は許可されていません（パッケージレジストリへの公開）。"
+      ;;
+    cargo)
+      SUB=$(strip_options "$COMMAND" "cargo" "$CARGO_TWO")
+      [[ "$SUB" == "publish" ]] && deny "cargo publish は許可されていません（crates.io への公開）。"
+      ;;
+    pip)
+      SUB=$(strip_options "$COMMAND" "pip" "$PIP_TWO")
+      [[ "$SUB" == "publish" ]] && deny "pip publish は許可されていません。"
+      ;;
+    gem)
+      SUB=$(strip_options "$COMMAND" "gem" "$GEM_TWO")
+      [[ "$SUB" == "push" ]] && deny "gem push は許可されていません（rubygems.org への公開）。"
+      ;;
+    twine)
+      SUB=$(strip_options "$COMMAND" "twine" "$TWINE_TWO")
+      [[ "$SUB" == "upload" ]] && deny "twine upload は許可されていません（PyPI への公開）。"
+      ;;
+    terraform)
+      SUB=$(strip_options "$COMMAND" "terraform" "$TERRAFORM_TWO")
+      [[ "$SUB" == "apply" ]] && deny "terraform apply は許可されていません（インフラ適用）。"
+      ;;
+    kubectl)
+      SUB=$(strip_options "$COMMAND" "kubectl" "$KUBECTL_TWO")
+      [[ "$SUB" == "apply" ]] && deny "kubectl apply は許可されていません（K8s リソース適用）。"
+      ;;
+    docker)
+      SUB=$(strip_options "$COMMAND" "docker" "$DOCKER_TWO")
+      [[ "$SUB" == "push" ]] && deny "docker push は許可されていません（イメージレジストリへの公開）。"
+      ;;
+    aws)
+      contains_subcmd "$COMMAND" "aws" "$AWS_TWO" "deploy" && deny "aws ... deploy は許可されていません（デプロイ系コマンド）。"
+      ;;
+    gcloud)
+      contains_subcmd "$COMMAND" "gcloud" "$GCLOUD_TWO" "deploy" && deny "gcloud ... deploy は許可されていません（デプロイ系コマンド）。"
+      ;;
+    firebase)
+      contains_subcmd "$COMMAND" "firebase" "$FIREBASE_TWO" "deploy" && deny "firebase deploy は許可されていません。"
+      ;;
+    vercel)
+      contains_subcmd "$COMMAND" "vercel" "$VERCEL_TWO" "deploy" && deny "vercel deploy は許可されていません。"
+      ;;
+    netlify)
+      contains_subcmd "$COMMAND" "netlify" "$NETLIFY_TWO" "deploy" && deny "netlify deploy は許可されていません。"
+      ;;
+    flyctl)
+      contains_subcmd "$COMMAND" "flyctl" "$FLYCTL_TWO" "deploy" && deny "flyctl deploy は許可されていません。"
+      ;;
+    helm)
+      SUB=$(strip_options "$COMMAND" "helm" "$HELM_TWO")
+      if [[ "$SUB" == "install" || "$SUB" == "upgrade" ]]; then
+        deny "helm $SUB は許可されていません（K8s リソースの変更）。"
+      fi
+      ;;
+    sudo)
+      deny "sudo は許可されていません。"
+      ;;
+  esac
+}
+
+# chain 演算子（&& || ; |）でセグメントに分割し、各セグメントを検査
+# bash 3.2 で動くよう sed で改行に置換、while read で分割
+SEGMENTS=$(echo "$FULL_COMMAND" | sed 's/||/\n/g; s/&&/\n/g; s/;/\n/g; s/|/\n/g')
+while IFS= read -r seg; do
+  check_segment "$seg"
+done <<< "$SEGMENTS"
 
 exit 0

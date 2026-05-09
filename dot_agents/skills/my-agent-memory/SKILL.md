@@ -1,13 +1,24 @@
 ---
 name: my-agent-memory
 description: "ユーザーが記憶の保存・呼び出し・整理を求めたときに使う。トリガー: 「記憶して」「保存して」「メモして」「前に何を話した？」「メモ確認して」「メモリ整理して」。また、保存する価値のある発見をしたときにも積極的に使う。"
+allowed-tools: Bash(git rev-parse *), Bash(basename *), Bash(mkdir *), Bash(ls *), Bash(rg *), Bash(trash ~/.agents/skills/my-agent-memory/memories/*), Bash(rmdir ~/.agents/skills/my-agent-memory/memories/*), Read, Write(~/.agents/skills/my-agent-memory/memories/**), Edit(~/.agents/skills/my-agent-memory/memories/**), Glob, Grep
 ---
 
 # Agent Memory
 
 会話をまたいで永続する知識の保存領域。
 
-**保存先:** `.claude/skills/my-agent-memory/memories/`
+**保存先:** `~/.agents/skills/my-agent-memory/memories/<project>/`
+
+`<project>` は次のコマンドで取得する:
+
+```bash
+basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+```
+
+git repo であればそのトップレベル名、そうでなければ cwd の basename を使う。
+
+> 補足: `~/.claude/skills/my-agent-memory/` は `~/.agents/skills/my-agent-memory/` へのシンボリックリンクなので、Claude/Codex どちらから見ても同じ実体を参照する。SKILL.md 内のパス表記は `~/.agents/...` で統一する。
 
 ## 積極的な活用
 
@@ -36,18 +47,19 @@ description: "ユーザーが記憶の保存・呼び出し・整理を求めた
 - フォルダ名・ファイル名はkebab-caseを使用
 - 知識ベースの成長に合わせて統合・再編成する
 
-例：
+例（プロジェクト `dotfiles` の場合）：
 ```text
 memories/
-├── file-processing/
-│   └── large-file-memory-issue.md
-├── dependencies/
-│   └── iconv-esm-problem.md
-└── project-context/
-    └── december-2025-work.md
+└── dotfiles/
+    ├── file-processing/
+    │   └── large-file-memory-issue.md
+    ├── dependencies/
+    │   └── iconv-esm-problem.md
+    └── work-log/
+        └── december-2025-work.md
 ```
 
-これは一例。実際の内容に基づいて自由に構造化すること。
+トップレベルは必ずプロジェクト名のディレクトリ。その下のサブカテゴリは内容に応じて自由に作成する。
 
 ## Frontmatter
 
@@ -77,28 +89,31 @@ related: [src/core/file/fileProcessor.ts]
 
 ## 検索ワークフロー
 
-summary優先アプローチで効率的に関連メモリを検索する：
+summary優先アプローチで効率的に関連メモリを検索する。検索対象は基本的に**現在のプロジェクトのディレクトリ**:
 
 ```bash
+PROJECT=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
+DIR=~/.agents/skills/my-agent-memory/memories/$PROJECT
+
 # 1. カテゴリ一覧
-ls .claude/skills/my-agent-memory/memories/
+ls "$DIR"
 
 # 2. 全summaryを表示
-rg "^summary:" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden
+rg "^summary:" "$DIR" --hidden
 
 # 3. キーワードでsummaryを検索
-rg "^summary:.*keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
+rg "^summary:.*keyword" "$DIR" --hidden -i
 
 # 4. タグで検索
-rg "^tags:.*keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
+rg "^tags:.*keyword" "$DIR" --hidden -i
 
 # 5. 全文検索（summary検索で不十分な場合）
-rg "keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
+rg "keyword" "$DIR" --hidden -i
 
 # 6. 関連するメモリファイルを読む
 ```
 
-**注意:** メモリファイルはgitignoreされているため、ripgrepで `--no-ignore` と `--hidden` フラグを使用すること。
+ユーザーが明示的に「全プロジェクト横断で探して」と言った場合のみ、`~/.agents/skills/my-agent-memory/memories/` 直下を対象に検索する。
 
 ## 操作
 
@@ -109,9 +124,20 @@ rg "keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
 3. 必須のfrontmatter付きでファイルを作成する（`date +%Y-%m-%d` で現在日付を取得）
 
 ```bash
-mkdir -p .claude/skills/my-agent-memory/memories/category-name/
-# 注意: 上書きを避けるため、書き込む前にファイルの存在を確認すること
-cat > .claude/skills/my-agent-memory/memories/category-name/filename.md << 'EOF'
+# プロジェクト名取得・ディレクトリ作成
+PROJECT=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
+mkdir -p ~/.agents/skills/my-agent-memory/memories/$PROJECT/category-name/
+```
+
+その後、Write ツールで以下のパスにファイルを作成する:
+
+```
+~/.agents/skills/my-agent-memory/memories/<project>/category-name/filename.md
+```
+
+ファイル内容:
+
+```markdown
 ---
 summary: "このメモリの簡潔な説明"
 created: 2025-01-15
@@ -120,17 +146,20 @@ created: 2025-01-15
 # タイトル
 
 内容...
-EOF
 ```
+
+**注意:** 上書きを避けるため、Write の前にファイルの存在を確認すること。
 
 ### メンテナンス
 
 - **更新**: 情報が変わったら内容を更新し、frontmatterに `updated` フィールドを追加
 - **削除**: もう関連性のないメモリを削除
   ```bash
-  trash .claude/skills/my-agent-memory/memories/category-name/filename.md
+  PROJECT=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
+  DIR=~/.agents/skills/my-agent-memory/memories/$PROJECT
+  trash "$DIR/category-name/filename.md"
   # 空のカテゴリフォルダを削除
-  rmdir .claude/skills/my-agent-memory/memories/category-name/ 2>/dev/null || true
+  rmdir "$DIR/category-name/" 2>/dev/null || true
   ```
 - **統合**: 関連するメモリが増えたらマージする
 - **再編成**: 知識ベースの成長に合わせて、より適切なカテゴリにメモリを移動する

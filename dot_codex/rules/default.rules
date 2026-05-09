@@ -1,11 +1,12 @@
-prefix_rule(pattern=["gh", "auth"], decision="allow")
-prefix_rule(pattern=["gh", "pr"], decision="allow")
-prefix_rule(pattern=["gh", "api"], decision="allow")
-prefix_rule(pattern=["git", "add", "-u"], decision="allow")
-prefix_rule(pattern=["pnpm", "vitest", "--project", "storybook"], decision="allow")
-prefix_rule(pattern=["pnpm", "test:vrt"], decision="allow")
-prefix_rule(pattern=["pnpm", "test:vrt:update"], decision="allow")
-prefix_rule(pattern=["/bin/zsh", "-lc", "CI=true pnpm install --no-frozen-lockfile"], decision="allow")
-prefix_rule(pattern=["pnpm", "test:vrt:file:update"], decision="allow")
-prefix_rule(pattern=["pnpm", "test:vrt:file"], decision="allow")
-prefix_rule(pattern=["curl", "-fsSL"], decision="allow")
+# Default rules apply to every Codex session for this user.
+# Keep this file limited to generic, read-only commands that are safe across repositories.
+
+# Local process and container status
+prefix_rule(pattern=["ps", "aux"], decision="allow")
+prefix_rule(pattern=["docker", "context", "ls"], decision="allow")
+prefix_rule(pattern=["docker", "info", "--format"], decision="allow")
+prefix_rule(pattern=["docker", "ps", "--format"], decision="allow")
+prefix_rule(pattern=["colima", "status"], decision="allow")
+
+# Local Codex rule setup
+prefix_rule(pattern=["mkdir", "-p", ".codex/rules"], decision="allow")

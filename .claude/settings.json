@@ -49,19 +49,26 @@
       "Bash(rsync *)",
       "Bash(ln *)",
       "Bash(mkdir *)",
-      "Skill(add-brew)",
-      "Skill(add-dotfiles-dir)",
-      "Skill(add-skill)",
-      "Skill(sync-brew)"
+      "Skill(brew-add)",
+      "Skill(brew-sync)",
+      "Skill(dotfiles-dir-add)",
+      "Skill(skill-add)"
     ],
     "deny": [
-      "Bash(git *add*)",
-      "Bash(git *commit*)",
-      "Bash(git *stash*)",
-      "Bash(git *push*)",
-      "Bash(git *rebase*)",
-      "Bash(git *reset*)",
-      "Bash(git *checkout*)"
+      "Bash(git add*)",
+      "Bash(git -C * add*)",
+      "Bash(git commit*)",
+      "Bash(git -C * commit*)",
+      "Bash(git stash*)",
+      "Bash(git -C * stash*)",
+      "Bash(git push*)",
+      "Bash(git -C * push*)",
+      "Bash(git rebase*)",
+      "Bash(git -C * rebase*)",
+      "Bash(git reset*)",
+      "Bash(git -C * reset*)",
+      "Bash(git checkout*)",
+      "Bash(git -C * checkout*)"
     ]
   }
 }

@@ -1,5 +1,5 @@
 ---
-name: pr-creator
+name: my-pr-creator
 description: GitHub Pull Request を作成・更新する。PR 作成、draft PR 作成、PR タイトル・本文修正、レビュー依頼前の PR 本文整備で使用する。タイトルと本文を日本語で書き、リポジトリのテンプレートがあれば必ず反映する。
 ---
 

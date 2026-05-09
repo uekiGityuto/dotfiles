@@ -63,12 +63,11 @@
       "mcp__pencil",
       "mcp__plugin_context7_context7__*",
       "Skill(browser-use)",
-      "Skill(create-pr-with-screenshots)",
+      "Skill(my-create-pr-with-screenshots)",
       "Skill(find-skills)",
       "Skill(skill-creator)",
-      "Skill(takt)",
       "Skill(codex:*)",
-      "Skill(ask-codex)",
+      "Skill(my-codex)",
       "Skill(takt-builder)"
     ],
     "deny": [

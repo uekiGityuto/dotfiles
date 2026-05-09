@@ -1,5 +1,5 @@
 ---
-name: ask-codex
+name: my-codex
 description: >-
   Codex CLIにセカンドオピニオンや相談・議論を依頼する。
 user-invocable: true
@@ -12,7 +12,7 @@ hooks:
       hooks:
         - type: command
           if: "Bash(*codex *)"
-          command: bash ~/.claude/skills/ask-codex/auto-approve-codex.sh
+          command: bash ~/.claude/skills/my-codex/auto-approve-codex.sh
 ---
 
 あなたは、Claude Code で進めている作業について、Codex にセカンドオピニオンや相談を依頼し、その結果を受けてユーザーに報告する役割を担う。

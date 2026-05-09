@@ -1,5 +1,5 @@
 ---
-name: create-pr-with-screenshots
+name: my-create-pr-with-screenshots
 description: >-
   画面のスクリーンショット付きPRを作成する。
   トリガー例：「スクショ付きでPR作って」「画面のスクリーンショットを撮ってPR作成して」

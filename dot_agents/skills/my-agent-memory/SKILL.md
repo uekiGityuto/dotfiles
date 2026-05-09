@@ -1,5 +1,5 @@
 ---
-name: agent-memory
+name: my-agent-memory
 description: "ユーザーが記憶の保存・呼び出し・整理を求めたときに使う。トリガー: 「記憶して」「保存して」「メモして」「前に何を話した？」「メモ確認して」「メモリ整理して」。また、保存する価値のある発見をしたときにも積極的に使う。"
 ---
 
@@ -7,7 +7,7 @@ description: "ユーザーが記憶の保存・呼び出し・整理を求めた
 
 会話をまたいで永続する知識の保存領域。
 
-**保存先:** `.claude/skills/agent-memory/memories/`
+**保存先:** `.claude/skills/my-agent-memory/memories/`
 
 ## 積極的な活用
 
@@ -81,19 +81,19 @@ summary優先アプローチで効率的に関連メモリを検索する：
 
 ```bash
 # 1. カテゴリ一覧
-ls .claude/skills/agent-memory/memories/
+ls .claude/skills/my-agent-memory/memories/
 
 # 2. 全summaryを表示
-rg "^summary:" .claude/skills/agent-memory/memories/ --no-ignore --hidden
+rg "^summary:" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden
 
 # 3. キーワードでsummaryを検索
-rg "^summary:.*keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
+rg "^summary:.*keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
 
 # 4. タグで検索
-rg "^tags:.*keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
+rg "^tags:.*keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
 
 # 5. 全文検索（summary検索で不十分な場合）
-rg "keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
+rg "keyword" .claude/skills/my-agent-memory/memories/ --no-ignore --hidden -i
 
 # 6. 関連するメモリファイルを読む
 ```
@@ -109,9 +109,9 @@ rg "keyword" .claude/skills/agent-memory/memories/ --no-ignore --hidden -i
 3. 必須のfrontmatter付きでファイルを作成する（`date +%Y-%m-%d` で現在日付を取得）
 
 ```bash
-mkdir -p .claude/skills/agent-memory/memories/category-name/
+mkdir -p .claude/skills/my-agent-memory/memories/category-name/
 # 注意: 上書きを避けるため、書き込む前にファイルの存在を確認すること
-cat > .claude/skills/agent-memory/memories/category-name/filename.md << 'EOF'
+cat > .claude/skills/my-agent-memory/memories/category-name/filename.md << 'EOF'
 ---
 summary: "このメモリの簡潔な説明"
 created: 2025-01-15
@@ -128,9 +128,9 @@ EOF
 - **更新**: 情報が変わったら内容を更新し、frontmatterに `updated` フィールドを追加
 - **削除**: もう関連性のないメモリを削除
   ```bash
-  trash .claude/skills/agent-memory/memories/category-name/filename.md
+  trash .claude/skills/my-agent-memory/memories/category-name/filename.md
   # 空のカテゴリフォルダを削除
-  rmdir .claude/skills/agent-memory/memories/category-name/ 2>/dev/null || true
+  rmdir .claude/skills/my-agent-memory/memories/category-name/ 2>/dev/null || true
   ```
 - **統合**: 関連するメモリが増えたらマージする
 - **再編成**: 知識ベースの成長に合わせて、より適切なカテゴリにメモリを移動する

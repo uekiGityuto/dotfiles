@@ -3,9 +3,9 @@
 !.skill-lock.json
 !skills/
 skills/**
-!skills/agent-memory/
-!skills/agent-memory/**
-!skills/empirical-prompt-tuning/
-!skills/empirical-prompt-tuning/**
-!skills/pr-creator/
-!skills/pr-creator/**
+!skills/my-agent-memory/
+!skills/my-agent-memory/**
+!skills/my-empirical-prompt-tuning/
+!skills/my-empirical-prompt-tuning/**
+!skills/my-pr-creator/
+!skills/my-pr-creator/**

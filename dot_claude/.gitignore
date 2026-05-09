@@ -9,10 +9,10 @@
 !hooks/**
 !skills/
 skills/**
-!skills/create-pr-with-screenshots/
-!skills/create-pr-with-screenshots/**
-!skills/ask-codex/
-!skills/ask-codex/**
-!skills/agent-memory
-!skills/empirical-prompt-tuning
-!skills/pr-creator
+!skills/my-create-pr-with-screenshots/
+!skills/my-create-pr-with-screenshots/**
+!skills/my-codex/
+!skills/my-codex/**
+!skills/my-agent-memory
+!skills/my-empirical-prompt-tuning
+!skills/my-pr-creator

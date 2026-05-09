@@ -6,6 +6,8 @@ allowed-tools: Bash(git rev-parse *), Bash(basename *), Bash(mkdir *), Bash(ls *
 
 # Agent Memory
 
+参照元: [Claude Code Agent Skills: agent-memory（zenn / yamadashy）](https://zenn.dev/yamadashy/articles/claude-code-agent-skills-agent-memory) を本環境に合わせて取り込み・改変。
+
 会話をまたいで永続する知識の保存領域。
 
 **保存先:** `~/.agents/skills/my-agent-memory/memories/<project>/`
@@ -181,3 +183,8 @@ created: 2025-01-15
 - **次のステップ**: 次にやること、未解決の質問
 
 すべてのメモリにすべてのセクションが必要なわけではない。関連するものだけ使うこと。
+
+## References
+
+- [Agent Skills Specification](https://agentskills.io/specification) — クロスエージェント共通の skill 仕様
+- [Claude Code Skills](https://code.claude.com/docs/ja/skills) — skill 作成時のフィールド仕様（`allowed-tools` 等）

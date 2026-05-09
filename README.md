@@ -1,113 +1,172 @@
 # dotfiles
 
-Mac の PC を初期状態からセットアップする前提。
+macOS 用の dotfiles 管理リポジトリ。
 
-## セットアップ
+初期セットアップでは、ホームディレクトリ配下の設定ファイル/ディレクトリをこのリポジトリ内のファイルへシンボリックリンクし、Homebrew / mise / uv tool をまとめてセットアップする。
 
-### Homebrew インストール
+## 前提
 
-[Homebrew のドキュメント](https://docs.brew.sh/FAQ)を参考にインストール。
+- macOS
+- Homebrew がインストール済みであること
 
-### セットアップ実行
+Homebrew が未インストールの場合は、[Homebrew の公式ドキュメント](https://docs.brew.sh/Installation)を参照して先にインストールする。
 
-#### セットアップスクリプト実行
+## 初期セットアップ
 
-```
+```bash
 ./init.sh
 ```
 
-`init.sh` は以下を順に実行する:
-1. `install.sh`（シンボリックリンクの作成）
-2. `brew bundle`（Homebrew パッケージのインストール）
-3. `mise install`（言語/ツールのインストール）
-4. `uv tool install`（uv ツールのインストール）
+`init.sh` は以下を順に実行する。
 
-`brew bundle` でエラーが起きた場合はエラー内容に応じて対応すること。
+1. `./install.sh`
+2. `make brew-install`
+3. `make mise-install`
+4. `make uv-install`
 
-#### config 再読み込み
+主な処理内容は次の通り。
 
-```
+- `install.sh`: dotfiles のシンボリックリンク作成、zsh 用の外部補完ファイル取得、`zsh-autosuggestions` の clone/pull
+- `make brew-install`: `brew bundle`
+- `make mise-install`: `mise install`
+- `make uv-install`: `uv-tools.txt` に書かれた uv tool のインストール
+
+`brew bundle` でエラーが起きた場合は、表示されたエラー内容に応じて対応する。
+
+## 設定の再読み込み
+
+初期セットアップ後、必要に応じて zsh 設定を再読み込みする。
+
+```bash
 source ~/.zshrc
 source ~/.zprofile
 ```
 
+Makefile から確認する場合:
+
+```bash
+make reload
+```
+
+## 管理方式
+
+### dot_ プレフィクス
+
+`dot_` プレフィクス付きのファイル/ディレクトリは、ホームディレクトリ配下の `.` 付きパスに対応する。
+
+例:
+
+| リポジトリ内 | リンク先 |
+| --- | --- |
+| `dot_zshrc` | `~/.zshrc` |
+| `dot_zprofile` | `~/.zprofile` |
+| `dot_gitconfig` | `~/.gitconfig` |
+| `dot_zsh` | `~/.zsh` |
+| `dot_ssh` | `~/.ssh` |
+| `dot_claude` | `~/.claude` |
+| `dot_codex` | `~/.codex` |
+| `dot_agents` | `~/.agents` |
+| `dot_takt` | `~/.takt` |
+| `dot_config/mise` | `~/.config/mise` |
+| `dot_config/ghostty` | `~/.config/ghostty` |
+| `dot_config/yazi` | `~/.config/yazi` |
+
+このリポジトリ自体の設定ファイルは、`.claude/` や `.vscode/` のようにプレフィクスなしで配置する。
+
+### シンボリックリンク
+
+リンク作成は `install.sh` が行う。
+
+```bash
+make install
+```
+
+既存のシンボリックリンクは上書きされる。既存の通常ファイル/通常ディレクトリがある場合は、黙って上書きせずエラーで停止する。初回セットアップ前に必要なファイルを退避しておく。
+
+ディレクトリごとリンクする対象の管理ファイルは、各ディレクトリ内の `.gitignore` で制御する。
+
+## よく使うコマンド
+
+| コマンド | 内容 |
+| --- | --- |
+| `make init` | 初期セットアップを実行 |
+| `make install` | シンボリックリンク作成と zsh 関連ファイル取得 |
+| `make brew-install` | `brew bundle` を実行 |
+| `make brew-dump` | 現在の Homebrew 状態を `Brewfile` に反映 |
+| `make mise-install` | mise 管理ツールをインストール |
+| `make uv-install` | `uv-tools.txt` の uv tool をインストール |
+| `make uv-dump` | 現在の uv tool 一覧を `uv-tools.txt` に反映 |
+| `make zplug-install` | zplug plugin をインストール |
+| `make zplug-update` | zplug plugin を更新 |
+| `make zplug-clean` | 未使用 zplug plugin を削除 |
+
+## Homebrew
+
+Homebrew パッケージは `Brewfile` で管理する。
+
+現在のインストール状態を反映する場合:
+
+```bash
+make brew-dump
+```
+
+Go など mise で管理したいツールが `Brewfile` に混ざる場合は、必要に応じて `brew bundle dump --force --no-go` のように除外オプションを使う。
+
+パッケージの概要は [BREW_PACKAGES.md](./BREW_PACKAGES.md) を参照。
+
+## mise
+
+言語/ツールのバージョン管理は [mise](https://mise.jdx.dev/) で行う。
+
+グローバル設定:
+
+```bash
+cat ~/.config/mise/config.toml
+```
+
+このリポジトリでは `dot_config/mise/config.toml` を `~/.config/mise` にリンクする。
+
+## uv tool
+
+uv tool は `uv-tools.txt` で管理する。
+
+現在の uv tool 一覧を反映する場合:
+
+```bash
+make uv-dump
+```
+
 ## SSH
 
-### 鍵
+SSH 鍵は別途用意する。
 
-鍵ファイルは別途配置すること。
-
-### Github セットアップ
-
-config の設定などはセットアップスクリプトで実施済みなので、基本的には鍵の作成と登録のみで良い認識。
-
-問題がある場合は、[Github のドキュメント](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac)を参考にしてセットアップすること。
-
-# その他
+GitHub への SSH 接続で問題がある場合は、[GitHub の公式ドキュメント](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac)を参照する。
 
 ## VS Code
 
-### 設定
+VS Code の設定と拡張機能は Settings Sync で同期している。
 
-VS Code の設定と拡張機能は Settings Sync で同期している。  
-VS Code をインストールして同期をオンにすること。
-[参考](https://code.visualstudio.com/docs/editor/settings-sync)
+VS Code をインストールして同期を有効化する。詳細は [Settings Sync の公式ドキュメント](https://code.visualstudio.com/docs/editor/settings-sync) を参照。
 
-### 注意
-
-[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=SimonSiefke.prettier-vscode)の拡張機能によって、各ファイルが予期せぬフォーマットされる可能性があるので注意。
-
-必要に応じてワークスペース内で無効にしたり、任意のタイプのファイルのみ有効にしたり、任意のタイプのファイルは別のフォーマッタを有効にするなど対応すること。
-
-# dotfiles 作成方法
-
-- 基本的には、dotfile を更新して GitHub に push するだけで良い。
-- homebrew でインストールしたパッケージは、`brew bundle dump --force`で Brewfile を作成しておく必要がある。
-- 注意）go を mise で管理しているのに出力される場合は、`brew bundle dump --force --no-go`で go は除外できる。
-
-# バージョン管理
-
-[Mise](https://mise.jdx.dev/) で統一管理。
-
-| ツール | 管理対象                                                       |
-| ------ | -------------------------------------------------------------- |
-| mise   | Node.js, Ruby, Flutter, Java, Python, Go, Terraform, pnpm など |
-
-```bash
-# グローバル設定確認
-cat ~/.config/mise/config.toml
-
-# プロジェクト別設定
-cat .mise.toml
-```
-
-# Homebrew パッケージ
-
-[BREW_PACKAGES.md](./BREW_PACKAGES.md) を参照。
-
-# メモ
-
-- Docker とか Slack も brew でインストールした方が良さげ。（[参考](https://engineers.weddingpark.co.jp/homebrew-bundle/)）
+[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=SimonSiefke.prettier-vscode) などの拡張機能によって、ファイルが意図せずフォーマットされる可能性がある。必要に応じてワークスペース単位で無効化する。
 
 ## zplug
 
-zsh の plugin は、一部で管理している。
-zplug から削除したい場合は、以下手順で削除する（はず）。
+zsh plugin は zplug で管理する。
 
-- `.zshrc`から該当の plugin の記述を削除
-- `zplug clean`で削除（未使用のプラグインが削除される）
-- `zplug list`で削除されたことを確認
+plugin を削除する場合:
 
-## dotfiles の作り方
+1. `dot_zshrc` から対象 plugin の記述を削除する
+2. `make zplug-clean`
+3. `zplug list` で削除を確認する
 
-各種設定ファイルをリポジトリ内にコピー
+## dotfile の追加手順
 
-```bash
-mv ~/.zshrc $(pwd)/.zshrc
-```
-
-もとの場所にシンボリックリンクを作成
+例: `~/.example` を管理対象に追加する場合。
 
 ```bash
-ln -s $(pwd)/.zshrc ~/.zshrc
+mv ~/.example "$(pwd)/dot_example"
+ln -s "$(pwd)/dot_example" ~/.example
 ```
+
+永続化するには、必要に応じて `install.sh` にリンク作成処理を追加してコミットする。

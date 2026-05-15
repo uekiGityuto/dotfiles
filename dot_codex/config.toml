@@ -46,12 +46,12 @@ trust_level = "trusted"
 "gpt-5.1-codex-max" = "gpt-5.4"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-09T01:23:58Z"
+last_updated = "2026-05-15T01:58:32Z"
 source_type = "local"
 source = "/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-05-08T02:36:33Z"
+last_updated = "2026-05-15T02:36:17Z"
 source_type = "local"
 source = "/Users/ueki/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -70,8 +70,22 @@ enabled = true
 [plugins."presentations@openai-primary-runtime"]
 enabled = true
 
-[plugins."browser-use@openai-bundled"]
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."figma@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
 enabled = true
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+
+[hooks.state]
+
+[hooks.state."/Users/ueki/ghq/github.com/wizenet/nsj/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:1ed8f0bd045ec0d987827126a1b4b8e31ef4eb2f6b341aea209a590e59725681"

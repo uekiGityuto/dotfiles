@@ -57,6 +57,7 @@ PR のタイトルと本文は日本語で書く。
 
 ## PR 本文ルール
 
+- 本文を書く前に `git log --oneline <base>..HEAD` で PR に含まれる全コミットを把握し、直前のコミットだけでなく全コミットを踏まえて書く（差分が必要なら `git log <base>..HEAD --stat` で範囲を絞って確認）
 - テンプレートの見出し・チェック項目を尊重する
 - placeholder や HTML コメントを未処理のまま残さない
 - 実行していない確認を実行済みにしない
@@ -71,10 +72,10 @@ PR のタイトルと本文は日本語で書く。
 本文は一時ファイルに書いて渡す。
 
 ```bash
-gh pr create --base <base> --head "$(git branch --show-current)" --title "<日本語タイトル>" --body-file "$tmpfile"
+gh pr create --base <base> --head "$(git branch --show-current)" --assignee uekiGityuto --title "<日本語タイトル>" --body-file "$tmpfile"
 ```
 
-draft PR の場合だけ `--draft` を付ける。
+`--assignee uekiGityuto` で自分を assign する。draft PR の場合だけ `--draft` を付ける。
 
 既存 PR のタイトルや本文を直す場合も、一時ファイルを使う。
 

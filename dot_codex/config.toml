@@ -11,6 +11,24 @@ notify = ["/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/computer-us
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/ueki/.codex"
+CODEX_HOME = "/Users/ueki/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "496c7b3cb95b4bc20cff49b513150606e0da0000c92bf752206bee5a6c248423"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_MARKETPLACE_NAME = "openai-bundled"
+NODE_REPL_UNTRUSTED_ENV_ALLOWLIST = "BROWSER_USE_MARKETPLACE_NAME"
+SKY_CUA_SERVICE_PATH = "/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/.tmp/bundled-marketplaces/openai-bundled/plugins/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+
 [projects."/Users/ueki/ghq/github.com/uekiGityuto/dotfiles"]
 trust_level = "trusted"
 
@@ -46,12 +64,12 @@ trust_level = "trusted"
 "gpt-5.1-codex-max" = "gpt-5.4"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-15T01:58:32Z"
+last_updated = "2026-06-06T02:09:27Z"
 source_type = "local"
 source = "/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-05-15T02:36:17Z"
+last_updated = "2026-06-02T14:39:56Z"
 source_type = "local"
 source = "/Users/ueki/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -76,6 +94,12 @@ enabled = true
 [plugins."figma@openai-curated"]
 enabled = true
 
+[plugins."openai-developers@openai-curated"]
+enabled = true
+
+[plugins."notion@openai-curated"]
+enabled = true
+
 [plugins."browser@openai-bundled"]
 enabled = true
 
@@ -89,3 +113,23 @@ enabled = true
 
 [hooks.state."/Users/ueki/ghq/github.com/wizenet/nsj/.codex/hooks.json:stop:0:0"]
 trusted_hash = "sha256:1ed8f0bd045ec0d987827126a1b4b8e31ef4eb2f6b341aea209a590e59725681"
+
+[hooks.state."/Users/ueki/ghq/github.com/wizenet/nsj/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:87bffe8cb47639132ae70017f9d1daa4fef46c1ed23dc402f71ef6138fbecf04"
+
+[desktop]
+localeOverride = "ja-JP"
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+git-always-force-push = false
+git-show-sidebar-pr-icons = true
+default-service-tier = "priority"
+
+[desktop.open-in-target-preferences]
+global = "vscode"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/ueki/ghq/github.com/wizenet/nsj" = "vscode"
+
+[features]
+js_repl = false

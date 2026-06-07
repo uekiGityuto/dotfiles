@@ -10,5 +10,7 @@ skills/my-agent-memory/memories/
 !skills/my-empirical-prompt-tuning/**
 !skills/my-pr-creator/
 !skills/my-pr-creator/**
+!skills/my-research-doc-writer/
+!skills/my-research-doc-writer/**
 !skills/my-retrospective-codify/
 !skills/my-retrospective-codify/**

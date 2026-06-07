@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Doc Writer"
+  short_description: "調査資料の構造化、表設計、未決事項整理を支援する。"
+  default_prompt: "Use $my-research-doc-writer to turn this investigation into a concise, well-structured research note."

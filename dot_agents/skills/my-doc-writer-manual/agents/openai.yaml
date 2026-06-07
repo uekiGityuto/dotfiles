@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manual Doc Writer"
+  short_description: "明示指定時に、ドキュメントの構成・表現・読みやすさを整える。"
+  default_prompt: "Use $my-doc-writer-manual to create, organize, or review this document."

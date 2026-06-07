@@ -14,6 +14,7 @@ skills/**
 !skills/my-codex/
 !skills/my-codex/**
 !skills/my-agent-memory
+!skills/my-doc-writer-manual
 !skills/my-empirical-prompt-tuning
 !skills/my-pr-creator
 !skills/my-research-doc-writer

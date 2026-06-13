@@ -136,6 +136,10 @@ uv tool は `uv-tools.txt` で管理する。
 make uv-dump
 ```
 
+## サプライチェーン対策
+
+各パッケージマネージャの cooldown 設定状況と、未対策ツールの運用方針は [SUPPLY_CHAIN.md](./SUPPLY_CHAIN.md) を参照。
+
 ## SSH
 
 SSH 鍵は別途用意する。

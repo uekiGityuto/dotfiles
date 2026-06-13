@@ -1,9 +1,12 @@
+[settings]
+minimum_release_age = "2d"
+
 [tools]
 flutter = "3.38.3"
 go = "1.23.3"
 java = "25.0.1"
-node = "20.12.2"
-pnpm = "10.5.2"
+node = "24.15.0"
+pnpm = "11.5.3"
 python = "3.13.2"
 ruby = "3.2.0"
 terraform = "1.11.2"

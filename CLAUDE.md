@@ -22,3 +22,11 @@ macOS用dotfiles管理リポジトリ。コマンドは `Makefile` を参照。
 
 1. 対象のdotfileを直接編集してコミット
 2. Homebrewパッケージの追加は `/brew-add`、外部での変更反映は `/brew-sync` を使う
+
+## サプライチェーン対策
+
+各ツールの cooldown 設定状況は [SUPPLY_CHAIN.md](./SUPPLY_CHAIN.md) を参照。
+
+- **`npx skills update` を勝手に実行しない**。skills は cooldown 機能を持たず、SKILL.md は LLM への命令そのもの（prompt injection リスクが直接効く）。実行前に必ずユーザーに確認し、対象 skill のソースリポジトリの最近のコミット差分を提示してから判断を仰ぐこと。
+- `brew upgrade` をリリース直後に即時実行しない。新規 `brew install` 時は `brew info <name>` で更新日時を確認する。
+- uv / mise は cooldown が設定済み。値を変更する際は SUPPLY_CHAIN.md の「値の根拠」「書式の落とし穴」を確認してから編集する。

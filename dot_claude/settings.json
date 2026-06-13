@@ -50,10 +50,8 @@
       "Read(**/credentials/**)",
       "Read(~/credentials/**)"
     ],
-    "additionalDirectories": [
-      "~/Downloads/work",
-      "/tmp/claude"
-    ],
+    "ask": ["Bash(npx skills update *)"],
+    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"],
     "defaultMode": "auto"
   },
   "hooks": {
@@ -172,10 +170,7 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": [
-      "git *",
-      "gh *"
-    ],
+    "excludedCommands": ["git *", "gh *"],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
     }

@@ -39,6 +39,12 @@
 | ---------- | ----------------- |
 | gemini-cli | Google Gemini CLI |
 
+## 決済 CLI
+
+| パッケージ | 用途      |
+| ---------- | --------- |
+| stripe     | Stripe CLI |
+
 ## コンテナ
 
 | パッケージ | 用途                                       |
@@ -81,13 +87,16 @@
 
 ## Cask（GUI アプリ）
 
-| パッケージ                  | 用途                        |
-| --------------------------- | --------------------------- |
-| android-studio              | Android 開発 IDE            |
-| claude-code                 | Claude Code CLI             |
-| codex                       | OpenAI Codex CLI            |
-| docker/tap/sbx              | Docker Sandbox（隣接サンドボックス） |
-| font-jetbrains-mono-nerd-font | Nerd Font（アイコン対応）   |
-| gcloud-cli                  | Google Cloud CLI              |
-| ghostty                     | 高速ターミナルエミュレータ  |
-| visual-studio-code          | コードエディタ              |
+| パッケージ                    | 用途                                 |
+| ----------------------------- | ------------------------------------ |
+| 1password-cli                 | 1Password CLI                        |
+| android-studio                | Android 開発 IDE                     |
+| claude-code                   | Claude Code CLI                      |
+| codex                         | OpenAI Codex CLI                     |
+| docker/tap/sbx                | Docker Sandbox（隣接サンドボックス） |
+| font-jetbrains-mono-nerd-font | Nerd Font（アイコン対応）            |
+| gcloud-cli                    | Google Cloud CLI                     |
+| ghostty                       | 高速ターミナルエミュレータ           |
+| obsidian                      | Markdown ナレッジベース              |
+| session-manager-plugin        | AWS Systems Manager Session Manager Plugin |
+| visual-studio-code            | コードエディタ                       |

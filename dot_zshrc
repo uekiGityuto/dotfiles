@@ -87,3 +87,6 @@ zstyle ':notify:*' success-sound "default"
 zstyle ':notify:*' always-notify-on-failure no
 
 fi
+
+# 1Password CLI
+source /Users/ueki/.config/op/plugins.sh

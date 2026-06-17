@@ -48,9 +48,14 @@
       "Read(**/credentials/**)",
       "Read(~/credentials/**)"
     ],
-    "ask": ["Bash(npx skills update *)"],
-    "additionalDirectories": ["~/Downloads/work", "/tmp/claude"],
-    "defaultMode": "auto"
+    "ask": [
+      "Bash(npx skills update *)"
+    ],
+    "defaultMode": "auto",
+    "additionalDirectories": [
+      "~/Downloads/work",
+      "/tmp/claude"
+    ]
   },
   "hooks": {
     "PreToolUse": [
@@ -169,7 +174,10 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": ["git *", "gh *"],
+    "excludedCommands": [
+      "git *",
+      "gh *"
+    ],
     "env": {
       "TMPPREFIX": "/private/tmp/claude-501/zsh"
     }
@@ -178,6 +186,6 @@
   "effortLevel": "high",
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
-  "voiceEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }

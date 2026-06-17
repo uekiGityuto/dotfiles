@@ -6,6 +6,7 @@ approvals_reviewer = "user"
 
 
 notify = ["/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "priority"
 
 [mcp_servers.context7]
 command = "npx"
@@ -22,12 +23,12 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_nod
 NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/ueki/.codex"
 CODEX_HOME = "/Users/ueki/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "27dca86fd6b571c49414a4b78e46b57bcf683a46cd1319799c11fbb6cfae3110"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "89809670b247cbaffbc4f87d9fa9742a9038c0f4a06fb822d7f85ff19bf24215"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.609.41114"
+BROWSER_USE_CODEX_APP_VERSION = "26.609.71450"
 CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
 
 [projects."/Users/ueki/ghq/github.com/uekiGityuto/dotfiles"]
@@ -65,12 +66,12 @@ trust_level = "trusted"
 "gpt-5.1-codex-max" = "gpt-5.4"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-13T04:22:38Z"
+last_updated = "2026-06-16T17:16:55Z"
 source_type = "local"
 source = "/Users/ueki/ghq/github.com/uekiGityuto/dotfiles/dot_codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-06-02T14:39:56Z"
+last_updated = "2026-06-15T01:36:29Z"
 source_type = "local"
 source = "/Users/ueki/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -99,6 +100,9 @@ enabled = true
 enabled = true
 
 [plugins."notion@openai-curated"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
 enabled = true
 
 [plugins."browser@openai-bundled"]
@@ -136,6 +140,7 @@ global = "vscode"
 
 [features]
 memories = true
+js_repl = false
 
 [memories]
 generate_memories = true
